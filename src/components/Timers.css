@@ -1,0 +1,22 @@
+.Timer {
+    border: 1px solid red;
+    min-width: 100px;
+    min-height: 100px;
+}
+div.timers {
+    display: flex;
+    flex-direction: row;
+}
+.addTimer {
+    min-width: 5em;
+    min-height: 5em;
+    text-align: center;
+    border-color: green;
+    border-width: 1px;
+    @apply flex items-center place-content-center;
+}
+.delTimer {
+    float: right;
+    border: outset 2px;
+    padding-inline: 2px;
+}
