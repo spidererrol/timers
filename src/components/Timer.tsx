@@ -1,6 +1,6 @@
 import { ReactNode } from "react"
 import TimerData from "@/objects/TimerData"
-import { DeleteIcon, DoneIcon, EditIcon } from "@/components/Icons"
+import { DeleteIcon, DoneIcon, EditIcon, PauseIcon, PlayIcon, StopIcon } from "@/components/Icons"
 import FingerButton from "@/components/FingerButton"
 import NumberScroller from "@/components/NumberScroller"
 import { updateTimerFunction } from "@/libs/helpers"
@@ -30,11 +30,20 @@ function TimerSettings({ timer, delTimer, updateTimer }: { timer: TimerData, del
 }
 
 function TimerRun({ timer, updateTimer }: { timer: TimerData, updateTimer: updateTimerFunction }) {
-    return (<div className="TimerRun">
+    return (<div className={"TimerRun" + (timer.finished ? " finished" : "")}>
         <div className="toolbar">
             <FingerButton className="editTimer" title="Edit this Timer" onClick={() => updateTimer(timer.id, t => { t.configured = false })}><EditIcon /></FingerButton>
         </div>
-        <p className="timeleft">{timer.current.toDisplay()}</p>
+        <p className={"timeleft"}>{timer.current.toDisplay()}</p>
+        {timer.paused || !timer.started ? (<FingerButton onClick={() => updateTimer(timer.id, t => { if (t.paused) { t.resume() } else { t.start() } })}><PlayIcon /></FingerButton>) : <></>}
+        {timer.started && !timer.paused ? (<FingerButton onClick={() => updateTimer(timer.id, t => { t.pause() })}><PauseIcon /></FingerButton>) : <></>}
+        {timer.started ?
+            (
+                <FingerButton onClick={() => updateTimer(timer.id, t => { t.stop() })}><StopIcon /></FingerButton>
+            )
+            :
+            <></>
+        }
     </div>)
 }
 

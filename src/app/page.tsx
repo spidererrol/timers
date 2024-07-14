@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import Timers from "@/components/Timers"
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import TimerData from "@/objects/TimerData"
 import { AddIcon } from "@/components/Icons"
 import FingerButton from "@/components/FingerButton"
@@ -10,6 +10,14 @@ import FingerButton from "@/components/FingerButton"
 export default function Home() {
   const [nextId, setNextId] = useState(1)
   const [timers, setTimers] = useState([] as TimerData[]) // Immer didn't work for deeper updates.
+  const [tick,setTick] = useState(Date.now())
+
+  useEffect(() => {
+    const ticker = setInterval(()=>{
+      setTick(Date.now())
+    },500)
+    return ()=>clearInterval(ticker)
+  },[])
 
   function addTimer() {
     setTimers([...timers, new TimerData(nextId)])

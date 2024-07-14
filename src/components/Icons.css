@@ -1,0 +1,13 @@
+@import '@material-design-icons/font';
+
+.icon {
+    transform: scale(1.75);
+}
+.short .icon {
+    transform: none;
+}
+.icon.mdi {
+    transform: none;
+    font-size: 30px;
+    padding-top: 2px;
+}

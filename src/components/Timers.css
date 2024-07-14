@@ -28,3 +28,6 @@ button {
 .timeleft {
     font-size: xx-large;
 }
+.finished {
+    background-color: lime;
+}

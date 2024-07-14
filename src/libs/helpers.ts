@@ -1,7 +1,7 @@
 import TimerData from "@/objects/TimerData"
 
 export function padnumber(num: number, len: number = 2): string {
-    let ret = "" + num
+    let ret = "" + Math.floor(num)
     while (ret.length < len) {
         ret = "0" + ret
     }
