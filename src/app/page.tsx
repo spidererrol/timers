@@ -3,28 +3,32 @@
 import Image from "next/image"
 import Timers from "@/components/Timers"
 import React, { useState } from "react"
-import { useImmer } from "use-immer"
 import TimerData from "@/objects/TimerData"
-import Add from "famfamfam-silk/dist/png/add.png"
+import { AddIcon } from "@/components/Icons"
+import FingerButton from "@/components/FingerButton"
 
 export default function Home() {
   const [nextId, setNextId] = useState(1)
-  const [timers, updateTimers] = useImmer([] as TimerData[])
+  const [timers, setTimers] = useState([] as TimerData[]) // Immer didn't work for deeper updates.
 
   function addTimer() {
-    updateTimers(n => { n.push(new TimerData(nextId)) })
+    setTimers([...timers, new TimerData(nextId)])
     setNextId(n => n + 1)
   }
 
   function delTimer(id: number) {
-    updateTimers(n => n.filter(t => t.id != id))
+    setTimers([...timers.filter(t => t.id != id)])
+  }
+
+  function updateTimer(id: number, update: (timer: TimerData) => void) {
+    setTimers([...timers.map(t => { if (t.id == id) { update(t); return t } else { return t } })])
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="flex flex-col justify-between items-center p-24 min-h-screen">
       <div className="timers">
-        <Timers timers={timers} delTimer={delTimer} />
-        <div className="addTimer" title="Add new timer" onClick={addTimer}><Image alt="+" src={Add}/></div>
+        <Timers timers={timers} delTimer={delTimer} updateTimer={updateTimer} />
+        <FingerButton className="addTimer" title="Add new timer" onClick={addTimer}><AddIcon /></FingerButton>
       </div>
     </main>
   )

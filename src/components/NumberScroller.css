@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.NumberScroller {
+    display: flex;
+    flex-direction: column;
+}
+.NumberScroller p {
+    text-align: center;
+}

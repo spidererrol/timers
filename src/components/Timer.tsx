@@ -1,14 +1,51 @@
+import { ReactNode } from "react"
 import TimerData from "@/objects/TimerData"
-import Image from "next/image"
-import Delete from "famfamfam-silk/dist/png/delete.png"
+import { DeleteIcon, DoneIcon, EditIcon } from "@/components/Icons"
+import FingerButton from "@/components/FingerButton"
+import NumberScroller from "@/components/NumberScroller"
+import { updateTimerFunction } from "@/libs/helpers"
 
-function Timer({ timer, delTimer }: { timer: TimerData, delTimer: (id: number) => void }) {
+function TimerWrapper({ children, timer }: { children: ReactNode, timer: TimerData }) {
     return (
-        <div className="Timer">
-            Timer [{timer.id}]
-            <button className="delTimer" onClick={() => delTimer(timer.id)}><Image alt="X" title="Delete this timer" src={Delete} /></button>
-        </div>
+        <fieldset className="Timer">
+            <legend>Timer {timer.displayCurrent()}</legend>
+            {children}
+        </fieldset>
     )
 }
 
-export default Timer
+function TimerSettings({ timer, delTimer, updateTimer }: { timer: TimerData, delTimer: (id: number) => void, updateTimer: updateTimerFunction }) {
+    return (<div className="TimerSettings">
+        <div className="toolbar">
+            <FingerButton className="delTimer" title="Delete this Timer" onClick={() => delTimer(timer.id)}><DeleteIcon /></FingerButton>
+        </div>
+        <div className="timeset">
+            <NumberScroller min={0} max={24} value={timer.duration.hours} increment={() => { updateTimer(timer.id, t => { t.duration.hours++ }) }} decrement={() => { updateTimer(timer.id, t => { t.duration.hours-- }) }} />
+            <NumberScroller min={0} max={59} value={timer.duration.minutes} increment={() => { updateTimer(timer.id, t => { t.duration.minutes++ }) }} decrement={() => { updateTimer(timer.id, t => { t.duration.minutes-- }) }} />
+            <NumberScroller min={0} max={59} value={timer.duration.seconds} increment={() => { updateTimer(timer.id, t => { t.duration.seconds++ }) }} decrement={() => { updateTimer(timer.id, t => { t.duration.seconds-- }) }} />
+        </div>
+        <FingerButton className="done" title="Done" onClick={() => updateTimer(timer.id, t => { t.configured = true })} ><DoneIcon /></FingerButton>
+    </div>
+    )
+}
+
+function TimerRun({ timer, updateTimer }: { timer: TimerData, updateTimer: updateTimerFunction }) {
+    return (<div className="TimerRun">
+        <div className="toolbar">
+            <FingerButton className="editTimer" title="Edit this Timer" onClick={() => updateTimer(timer.id, t => { t.configured = false })}><EditIcon /></FingerButton>
+        </div>
+        <p className="timeleft">{timer.current.toDisplay()}</p>
+    </div>)
+}
+
+export default function Timer({ timer, delTimer, updateTimer }: { timer: TimerData, delTimer: (id: number) => void, updateTimer: updateTimerFunction }) {
+    if (timer.configured) {
+        return (<TimerWrapper timer={timer}><TimerRun timer={timer} updateTimer={updateTimer} /></TimerWrapper>)
+    } else {
+        return (
+            <TimerWrapper timer={timer}>
+                <TimerSettings timer={timer} delTimer={delTimer} updateTimer={updateTimer} />
+            </TimerWrapper>
+        )
+    }
+}

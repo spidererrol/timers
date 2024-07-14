@@ -13,10 +13,18 @@ div.timers {
     text-align: center;
     border-color: green;
     border-width: 1px;
-    @apply flex items-center place-content-center;
+    /* @apply flex items-center place-content-center; */
 }
-.delTimer {
+/* .delTimer {
+    @apply flex items-center place-content-center;
+} */
+.Timer .toolbar {
     float: right;
-    border: outset 2px;
-    padding-inline: 2px;
+    /* border: 1px solid orange; */
+}
+button {
+    border: outset 2px darkgray;
+}
+.timeleft {
+    font-size: xx-large;
 }

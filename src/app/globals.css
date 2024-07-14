@@ -31,3 +31,25 @@ body {
     text-wrap: balance;
   }
 }
+
+.fingersize {
+  min-width: 1cm;
+  min-height: 1cm;
+}
+
+.fingersize.short {
+  min-height: 0.5cm;
+}
+
+.digits {
+  font-family: monospace;
+  font-size: x-large;
+}
+
+.timeset {
+  display: flex;
+}
+
+.disabled {
+  filter: grayscale(1);
+}

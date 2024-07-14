@@ -1,6 +1,7 @@
 {
     "recommendations": [
         "bradlc.vscode-tailwindcss",
-        "burkeholland.simple-react-snippets"
+        "burkeholland.simple-react-snippets",
+        "dejmedus.tailwind-sorter"
     ]
 }
