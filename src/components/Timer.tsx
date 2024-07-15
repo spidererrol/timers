@@ -47,7 +47,11 @@ function TimerRun({ timer, updateTimer }: { timer: TimerData, updateTimer: updat
         <div className="toolbar">
             <FingerButton className="editTimer" title="Edit this Timer" onClick={() => updateTimer(timer.id, t => { t.configured = false })}><EditIcon /></FingerButton>
         </div>
-        <p className={"timeleft"}>{timer.current.toDisplay()}</p>
+        <p>
+            {timer.stages.length > 1?<span className="timerstage">{timer._currentstage + 1}<br /><span className="total">{timer.stages.length}</span></span>:<></>}
+            <span className={"timeleft"}>{timer.current.toDisplay()}</span>
+            <span className={"nexttime"}>{timer.nextstage !== undefined ? timer.nextstage.duration.toDisplay() : <></>}</span>
+        </p>
         {timer.paused || !timer.started ? (<FingerButton onClick={() => updateTimer(timer.id, t => { if (t.paused) { t.resume() } else { t.start() } })}><PlayIcon /></FingerButton>) : <></>}
         {timer.started && !timer.paused && !timer.finished ? (<FingerButton onClick={() => updateTimer(timer.id, t => { t.pause() })}><PauseIcon /></FingerButton>) : <></>}
         {timer.started || timer.finished ? <FingerButton onClick={() => updateTimer(timer.id, t => { t.stop() })}><StopIcon /></FingerButton> : <></>}

@@ -224,6 +224,9 @@ export default class TimerData {
     get currentstage(): TimerStageData {
         return this.stages[this._currentstage]
     }
+    get nextstage(): TimerStageData | undefined {
+        return this.stages[this._currentstage + 1]
+    }
     get duration(): timerduration {
         return this.currentstage.duration
     }
@@ -252,12 +255,19 @@ export default class TimerData {
     protected _running(): boolean {
         return this._started() && !this._paused()
     }
+    get stagestartedtime(): number | undefined {
+        if (this._starttime == undefined)
+            return undefined
+        if (this._currentstage == 0)
+            return this._starttime
+        return this._starttime + (this.stages.slice(0, this._currentstage).map(s => s.duration.full_seconds).reduce((p, c) => p + c, 0) * 1000)
+    }
     protected get _current(): timerduration {
         if (!this._started())
             return this.duration
         if (!this._paused())
-            return this.duration.subtract((Date.now() - (this._starttime as number)) / 1000)
-        return this.duration.subtract(((this._pausetime as number) - (this._starttime as number)) / 1000)
+            return this.duration.subtract((Date.now() - (this.stagestartedtime as number)) / 1000)
+        return this.duration.subtract(((this._pausetime as number) - (this.stagestartedtime as number)) / 1000)
     }
     get current(): timerduration {
         const dur = this._current

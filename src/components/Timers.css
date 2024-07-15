@@ -32,6 +32,16 @@ button {
 .timeleft {
     font-size: xx-large;
 }
+.nexttime {
+    font-size: xx-small;
+}
+.timerstage {
+    display: inline-block;
+    font-size: xx-small;
+}
+.timerstage .total {
+    text-decoration-line: overline;
+}
 .timeset {
     display: flex;
 }
