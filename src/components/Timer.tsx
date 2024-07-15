@@ -20,9 +20,18 @@ function TimerSettings({ timer, delTimer, updateTimer }: { timer: TimerData, del
             <FingerButton className="delTimer" title="Delete this Timer" onClick={() => delTimer(timer.id)}><DeleteIcon /></FingerButton>
         </div>
         <div className="timeset">
-            <NumberScroller min={0} max={24} value={timer.duration.hours} increment={() => { updateTimer(timer.id, t => { t.duration.hours++ }) }} decrement={() => { updateTimer(timer.id, t => { t.duration.hours-- }) }} />
-            <NumberScroller min={0} max={59} value={timer.duration.minutes} increment={() => { updateTimer(timer.id, t => { t.duration.minutes++ }) }} decrement={() => { updateTimer(timer.id, t => { t.duration.minutes-- }) }} />
-            <NumberScroller min={0} max={59} value={timer.duration.seconds} increment={() => { updateTimer(timer.id, t => { t.duration.seconds++ }) }} decrement={() => { updateTimer(timer.id, t => { t.duration.seconds-- }) }} />
+            <NumberScroller min={0} max={24} value={timer.duration.hours}
+                updateValue={n => { updateTimer(timer.id, t => { t.duration.hours = n }) }}
+            />
+            <div className="seperator"><span>&nbsp;</span><span>:</span><span>&nbsp;</span></div>
+            <NumberScroller min={0} max={59} value={timer.duration.minutes}
+                updateValue={n => { updateTimer(timer.id, t => { t.duration.minutes = n }) }}
+            />
+            <div className="seperator"><span>&nbsp;</span><span>:</span><span>&nbsp;</span></div>
+            <NumberScroller min={0} max={59} value={timer.duration.seconds}
+                updateValue={n => { updateTimer(timer.id, t => { t.duration.seconds = n }) }}
+            />
+            <div className="spacer">&nbsp;</div>
         </div>
         <FingerButton className="done" title="Done" onClick={() => updateTimer(timer.id, t => { t.configured = true })} ><DoneIcon /></FingerButton>
     </div>
@@ -30,13 +39,13 @@ function TimerSettings({ timer, delTimer, updateTimer }: { timer: TimerData, del
 }
 
 function TimerRun({ timer, updateTimer }: { timer: TimerData, updateTimer: updateTimerFunction }) {
-    return (<div className={"TimerRun" + (timer.finished ? " finished" : "")}>
+    return (<div className={"TimerRun" + (timer.finished ? " finished" : "")} style={{ "background": timer.color.toString() }}>
         <div className="toolbar">
             <FingerButton className="editTimer" title="Edit this Timer" onClick={() => updateTimer(timer.id, t => { t.configured = false })}><EditIcon /></FingerButton>
         </div>
         <p className={"timeleft"}>{timer.current.toDisplay()}</p>
         {timer.paused || !timer.started ? (<FingerButton onClick={() => updateTimer(timer.id, t => { if (t.paused) { t.resume() } else { t.start() } })}><PlayIcon /></FingerButton>) : <></>}
-        {timer.started && !timer.paused ? (<FingerButton onClick={() => updateTimer(timer.id, t => { t.pause() })}><PauseIcon /></FingerButton>) : <></>}
+        {timer.started && !timer.paused && !timer.finished ? (<FingerButton onClick={() => updateTimer(timer.id, t => { t.pause() })}><PauseIcon /></FingerButton>) : <></>}
         {timer.started ?
             (
                 <FingerButton onClick={() => updateTimer(timer.id, t => { t.stop() })}><StopIcon /></FingerButton>

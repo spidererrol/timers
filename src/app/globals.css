@@ -46,10 +46,6 @@ body {
   font-size: x-large;
 }
 
-.timeset {
-  display: flex;
-}
-
 .disabled {
   filter: grayscale(1);
 }

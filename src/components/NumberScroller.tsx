@@ -5,13 +5,14 @@ import "./NumberScroller.css"
 
 interface NumberScrollerProps {
     value: number
-    increment: () => void
-    decrement: () => void
+    updateValue: (n: number) => void
     min?: number
     max?: number
 }
 
-export default function NumberScroller({ value, increment, decrement, min, max }: NumberScrollerProps) {
+export default function NumberScroller({ value, updateValue, min, max }: NumberScrollerProps) {
+    if (Number.isNaN(value))
+        value = 0
     let incClass = "short"
     let decClass = "short"
     if (max !== undefined && value >= max)
@@ -20,9 +21,24 @@ export default function NumberScroller({ value, increment, decrement, min, max }
         decClass += " disabled"
     return (
         <div className="NumberScroller">
-            <FingerButton className={incClass} onClick={increment}><IncIcon /></FingerButton>
-            <p className="digits">{padnumber(value)}</p>
-            <FingerButton className={decClass} onClick={decrement}><DecIcon /></FingerButton>
+            <FingerButton className={incClass} onClick={() => updateValue(Math.min(value + 10, max ?? Number.POSITIVE_INFINITY))}><IncIcon /><IncIcon /></FingerButton>
+            <FingerButton className={incClass} onClick={() => updateValue(value + 1)}><IncIcon /></FingerButton>
+            {/* <p className="digits">{padnumber(value)}</p> */}
+            <input className="digits" type="number" min={min} max={max} size={2} value={value}
+                onChange={
+                    e => {
+                        if (
+                            !Number.isNaN(e.target.valueAsNumber) &&
+                            (max === undefined || e.target.valueAsNumber <= max) &&
+                            (min === undefined || e.target.valueAsNumber >= min)
+                        ) {
+                            updateValue(e.target.valueAsNumber)
+                        }
+                    }
+                }
+            />
+            <FingerButton className={decClass} onClick={() => updateValue(value - 1)}><DecIcon /></FingerButton>
+            <FingerButton className={decClass} onClick={() => updateValue(Math.max(value - 10, min ?? Number.NEGATIVE_INFINITY))}><DecIcon /><DecIcon /></FingerButton>
         </div>
     )
 }

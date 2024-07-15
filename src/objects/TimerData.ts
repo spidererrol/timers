@@ -185,6 +185,7 @@ export default class TimerData {
     stages: TimerStageData[] = [new TimerStageData()]
     _currentstage: number = 0
     defaultcolor: htmlcolor = new htmlcolor(0, 0, 0)
+    finishedcolor: htmlcolor = new htmlcolor(0, 100, 50)
 
     public clone(): TimerData {
         const ret = new TimerData(this.id)
@@ -194,10 +195,13 @@ export default class TimerData {
         ret.stages = this.stages
         ret._currentstage = this._currentstage
         ret.defaultcolor = this.defaultcolor
+        ret.finishedcolor = this.finishedcolor
         return ret
     }
 
     get color(): htmlcolor {
+        if (this.finished)
+            return this.finishedcolor
         const ccs = this.currentstage.current_color_stage(this.current)
         if (ccs === undefined)
             return this.defaultcolor

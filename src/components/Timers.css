@@ -19,8 +19,12 @@ div.timers {
     @apply flex items-center place-content-center;
 } */
 .Timer .toolbar {
-    float: right;
-    /* border: 1px solid orange; */
+    display: flex;
+    flex-direction: row-reverse;
+    width: 100%;
+}
+.Timer .spacer {
+    width: 40px;
 }
 button {
     border: outset 2px darkgray;
@@ -28,6 +32,17 @@ button {
 .timeleft {
     font-size: xx-large;
 }
-.finished {
-    background-color: lime;
+.timeset {
+    display: flex;
+}
+.timeset .seperator {
+    display: flex;
+    flex-direction: column;
+}
+.timeset .seperator span {
+    display: inline-block;
+}
+input {
+    background-color: black;
+    padding-left: 3px1
 }
