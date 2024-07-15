@@ -203,11 +203,11 @@ export default class TimerData {
 
     tick() {
         if (this._finished() && this._running()) {
-            if (this._currentstage < (this.stages.length - 1))
+            if (this._currentstage < (this.stages.length - 1)) {
                 this._currentstage++
-            else {
-                this._currentstage = 0
-                this.stop()
+                // this._starttime = Date.now() // I partly think it would be nicer to track
+            } else {
+                this._stop()
                 this._finishedflag = true
             }
         }
@@ -296,9 +296,12 @@ export default class TimerData {
             this._finishedflag = false
         }
     }
-    stop() {
+    protected _stop() {
         this._starttime = undefined
         this._pausetime = undefined
+    }
+    stop() {
+        this._stop()
         this._finishedflag = false
         this._currentstage = 0
     }
