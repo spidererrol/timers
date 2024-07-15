@@ -14,7 +14,10 @@ function TimerWrapper({ children, timer }: { children: ReactNode, timer: TimerDa
     )
 }
 
-function TimerSettings({ timer, delTimer, updateTimer }: { timer: TimerData, delTimer: (id: number) => void, updateTimer: updateTimerFunction }) {
+function TimerSettings({ timer, delTimer, updateTimer: up_updateTimer }: { timer: TimerData, delTimer: (id: number) => void, updateTimer: updateTimerFunction }) {
+    const updateTimer = (id: number, update: (timer: TimerData) => void) => {
+        up_updateTimer(id, t => { update(t); t.stop() })
+    }
     return (<div className="TimerSettings">
         <div className="toolbar">
             <FingerButton className="delTimer" title="Delete this Timer" onClick={() => delTimer(timer.id)}><DeleteIcon /></FingerButton>
