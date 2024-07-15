@@ -324,5 +324,13 @@ export default class TimerData {
 
     constructor(id: number) {
         this.id = id
+        //FIXME: TESTING SECTION {{{
+        if (id <= 3) {
+            this.stages = []
+            for (let i = 0; i < id; i++) {
+                this.stages.push(new TimerStageData())
+            }
+        }
+        // }}} END TESTING SECTION
     }
 }
