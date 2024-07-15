@@ -290,6 +290,7 @@ export default class TimerData {
         this._starttime = undefined
         this._pausetime = undefined
         this._finishedflag = false
+        this._currentstage = 0
     }
     pause() {
         if (this.started && !this.paused) {
