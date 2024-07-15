@@ -47,13 +47,7 @@ function TimerRun({ timer, updateTimer }: { timer: TimerData, updateTimer: updat
         <p className={"timeleft"}>{timer.current.toDisplay()}</p>
         {timer.paused || !timer.started ? (<FingerButton onClick={() => updateTimer(timer.id, t => { if (t.paused) { t.resume() } else { t.start() } })}><PlayIcon /></FingerButton>) : <></>}
         {timer.started && !timer.paused && !timer.finished ? (<FingerButton onClick={() => updateTimer(timer.id, t => { t.pause() })}><PauseIcon /></FingerButton>) : <></>}
-        {timer.started ?
-            (
-                <FingerButton onClick={() => updateTimer(timer.id, t => { t.stop() })}><StopIcon /></FingerButton>
-            )
-            :
-            <></>
-        }
+        {timer.started || timer.finished ? <FingerButton onClick={() => updateTimer(timer.id, t => { t.stop() })}><StopIcon /></FingerButton> : <></>}
     </div>)
 }
 

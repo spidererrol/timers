@@ -168,7 +168,7 @@ export class TimerStageData {
     duration: timerduration
     colors: TimerStageColorData[] = []
 
-    constructor(duration: timerduration = new timerduration(300)) {
+    constructor(duration: timerduration = new timerduration(3)) {
         this.duration = duration
     }
 
@@ -187,6 +187,7 @@ export default class TimerData {
     _currentstage: number = 0
     defaultcolor: htmlcolor = new htmlcolor(0, 0, 0)
     finishedcolor: htmlcolor = new htmlcolor(0, 100, 50)
+    protected _finishedflag: boolean = false
 
     public clone(): TimerData {
         const ret = new TimerData(this.id)
@@ -198,6 +199,18 @@ export default class TimerData {
         ret.defaultcolor = this.defaultcolor
         ret.finishedcolor = this.finishedcolor
         return ret
+    }
+
+    tick() {
+        if (this._finished() && this._running()) {
+            if (this._currentstage < (this.stages.length - 1))
+                this._currentstage++
+            else {
+                this._currentstage = 0
+                this.stop()
+                this._finishedflag = true
+            }
+        }
     }
 
     get color(): htmlcolor {
@@ -214,11 +227,19 @@ export default class TimerData {
     get duration(): timerduration {
         return this.currentstage.duration
     }
-    get started(): boolean {
+    protected _started(): boolean {
         return this._starttime !== undefined
     }
-    get paused(): boolean {
+    get started(): boolean {
+        this.tick()
+        return this._started()
+    }
+    protected _paused(): boolean {
         return this._pausetime !== undefined
+    }
+    get paused(): boolean {
+        this.tick()
+        return this._paused()
     }
     /**
      * Is timer currently counting down?
@@ -226,12 +247,15 @@ export default class TimerData {
      * @deprecated Risk of confusion between this and `started`
      */
     get running(): boolean {
-        return this.started && !this.paused
+        return this._running()
+    }
+    protected _running(): boolean {
+        return this._started() && !this._paused()
     }
     protected get _current(): timerduration {
-        if (!this.started)
+        if (!this._started())
             return this.duration
-        if (!this.paused)
+        if (!this._paused())
             return this.duration.subtract((Date.now() - (this._starttime as number)) / 1000)
         return this.duration.subtract(((this._pausetime as number) - (this._starttime as number)) / 1000)
     }
@@ -243,21 +267,29 @@ export default class TimerData {
             return dur
         }
     }
+    protected _finished(): boolean {
+        return (this._finishedflag || this.current.full_seconds <= 0)
+
+    }
     get finished(): boolean {
-        return this.current.full_seconds <= 0
+        this.tick()
+        return this._finished()
     }
     displayCurrent(): string {
+        this.tick()
         return this.current.toDisplay()
     }
     start() {
         if (!this.started) {
             this._starttime = Date.now()
             this._pausetime = undefined
+            this._finishedflag = false
         }
     }
     stop() {
         this._starttime = undefined
         this._pausetime = undefined
+        this._finishedflag = false
     }
     pause() {
         if (this.started && !this.paused) {
@@ -273,6 +305,7 @@ export default class TimerData {
     reset() {
         this._starttime = Date.now()
         this._pausetime = undefined
+        this._finishedflag = false
     }
 
     constructor(id: number) {
