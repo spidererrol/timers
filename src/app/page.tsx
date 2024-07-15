@@ -33,7 +33,7 @@ export default function Home() {
   }
 
   return (
-    <main className="flex flex-col justify-between items-center p-24 min-h-screen">
+    <main className="flex flex-col justify-between items-center min-h-screen">
       <div className="timers">
         <Timers timers={timers} delTimer={delTimer} updateTimer={updateTimer} />
         <FingerButton className="addTimer" title="Add new timer" onClick={addTimer}><AddIcon /></FingerButton>

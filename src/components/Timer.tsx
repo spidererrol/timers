@@ -8,7 +8,7 @@ import { updateTimerFunction } from "@/libs/helpers"
 function TimerWrapper({ children, timer }: { children: ReactNode, timer: TimerData }) {
     return (
         <fieldset className="Timer">
-            <legend>Timer {timer.displayCurrent()}</legend>
+            <legend>{timer.name} {timer.displayCurrent()}</legend>
             {children}
         </fieldset>
     )
@@ -19,6 +19,7 @@ function TimerSettings({ timer, delTimer, updateTimer }: { timer: TimerData, del
         <div className="toolbar">
             <FingerButton className="delTimer" title="Delete this Timer" onClick={() => delTimer(timer.id)}><DeleteIcon /></FingerButton>
         </div>
+        <input type="text" value={timer.name} onChange={e => updateTimer(timer.id, t => timer.name = e.target.value)} size={8} />
         <div className="timeset">
             <NumberScroller min={0} max={24} value={timer.duration.hours}
                 updateValue={n => { updateTimer(timer.id, t => { t.duration.hours = n }) }}

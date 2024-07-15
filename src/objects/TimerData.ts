@@ -179,6 +179,7 @@ export class TimerStageData {
 
 export default class TimerData {
     id: number
+    name: string = "Timer"
     configured: boolean = false
     private _starttime?: number
     private _pausetime?: number
