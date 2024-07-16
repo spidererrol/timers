@@ -1,8 +1,8 @@
 import { updateTimerFunction } from "@/libs/helpers"
 import TimerData from "@/objects/TimerData"
-import FingerButton from "../FingerButton"
-import { DeleteIcon, AddIcon, DoneIcon } from "../Icons"
-import EditStages from "./EditStages"
+import FingerButton from "@/components/FingerButton"
+import { DeleteIcon, AddIcon, DoneIcon } from "@/components/Icons"
+import EditStages from "@/components/Timer/EditStages"
 
 export default function TimerSettings({ timer, delTimer, updateTimer: up_updateTimer }: { timer: TimerData; delTimer: (id: number) => void; updateTimer: updateTimerFunction} ) {
     const updateTimer = (id: number, update: (timer: TimerData) => void) => {

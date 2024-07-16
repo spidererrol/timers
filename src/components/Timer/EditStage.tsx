@@ -1,8 +1,8 @@
 import { updateTimerFunction } from "@/libs/helpers"
 import TimerData from "@/objects/TimerData"
-import FingerButton from "../FingerButton"
-import { ColourWheelIcon, DeleteIcon } from "../Icons"
-import NumberScroller from "../NumberScroller"
+import FingerButton from "@/components/FingerButton"
+import { ColourWheelIcon, DeleteIcon } from "@/components/Icons"
+import NumberScroller from "@/components/NumberScroller"
 
 
 export default function EditStage({ timer, stageno, updateTimer }: { timer: TimerData; stageno: number; updateTimer: updateTimerFunction} ) {

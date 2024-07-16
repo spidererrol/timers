@@ -1,7 +1,7 @@
 import { updateTimerFunction } from "@/libs/helpers"
 import TimerData from "@/objects/TimerData"
-import FingerButton from "../FingerButton"
-import { EditIcon, PlayIcon, PauseIcon, StopIcon } from "../Icons"
+import FingerButton from "@/components/FingerButton"
+import { EditIcon, PlayIcon, PauseIcon, StopIcon } from "@/components/Icons"
 
 export default function TimerRun({ timer, updateTimer }: { timer: TimerData; updateTimer: updateTimerFunction} ) {
     return (<div className={"TimerRun" + (timer.finished ? " finished" : "")} style={{ "background": timer.color.toString() }}>
