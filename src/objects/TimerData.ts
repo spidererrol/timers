@@ -144,6 +144,14 @@ export class TimerStageColorData {
     endcolor: htmlcolor
 
     constructor(startpoint: timerduration, endpoint: timerduration, startcolor: htmlcolor, endcolor: htmlcolor) {
+        if (endpoint.full_seconds > startpoint.full_seconds) {
+            const temppoint = startpoint
+            startpoint = endpoint
+            endpoint = temppoint
+            const tempcolor = startcolor
+            startcolor = endcolor
+            endcolor = tempcolor
+        }
         this.startpoint = startpoint
         this.endpoint = endpoint
         this.startcolor = startcolor
@@ -151,7 +159,7 @@ export class TimerStageColorData {
     }
 
     active(currenttime: timerduration): boolean {
-        return this.startpoint.full_seconds <= currenttime.full_seconds && this.endpoint.full_seconds >= currenttime.full_seconds
+        return this.startpoint.full_seconds >= currenttime.full_seconds && this.endpoint.full_seconds <= currenttime.full_seconds
     }
 
     current_color(currentpoint: timerduration): htmlcolor {
@@ -166,10 +174,15 @@ export class TimerStageColorData {
 
 export class TimerStageData {
     duration: timerduration
+    editcolors: boolean = false
     colors: TimerStageColorData[] = []
 
-    constructor(duration: timerduration = new timerduration(3)) {
+    constructor(duration: timerduration = new timerduration(30)) {
         this.duration = duration
+        //FIXME: TESTING SECTION {{{
+        this.colors.push(new TimerStageColorData(new timerduration(20), new timerduration(10), new htmlcolor(120, 100, 50), new htmlcolor(60, 100, 50)))
+        this.colors.push(new TimerStageColorData(new timerduration(10), new timerduration(0), new htmlcolor(60, 100, 50), new htmlcolor(0, 100, 50)))
+        // END TESTING }}}
     }
 
     current_color_stage(currentpoint: timerduration): TimerStageColorData | undefined {
@@ -192,10 +205,10 @@ export default class TimerData {
     addStage() {
         this.stages.push(new TimerStageData())
     }
-    delStage(n?:number) {
+    delStage(n?: number) {
         if (n === undefined || n >= this.stages.length)
             n = this.stages.length - 1
-        this.stages.splice(n,1)
+        this.stages.splice(n, 1)
     }
 
     public clone(): TimerData {
