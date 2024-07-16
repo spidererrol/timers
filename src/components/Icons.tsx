@@ -1,13 +1,12 @@
 import Image from "next/image"
 import "@/components/Icons.css"
-// import '@material-design-icons/font'
 import DeleteFile from "famfamfam-silk/dist/png/delete.png"
 import AddFile from "famfamfam-silk/dist/png/add.png"
 import DoneFile from "famfamfam-silk/dist/png/accept.png"
 import IncFile from "famfamfam-silk/dist/png/arrow_up.png"
 import DecFile from "famfamfam-silk/dist/png/arrow_down.png"
 import EditFile from "famfamfam-silk/dist/png/note_edit.png"
-// import PlayFile from "@material-design-icons/svg/outlined/play_circle.svg"
+import ColourWheelFile from "famfamfam-silk/dist/png/color_wheel.png"
 
 export interface IconParams {
     alt?: string
@@ -36,6 +35,10 @@ export function DecIcon({ alt = "Decrease", title }: IconParams) {
 
 export function EditIcon({ alt = "Edit", title }: IconParams) {
     return <Image className="icon" alt={alt} title={title} src={EditFile} />
+}
+
+export function ColourWheelIcon({ alt = "Colors", title }: IconParams) {
+    return <Image className="icon" alt={alt} title={title} src={ColourWheelFile} />
 }
 
 function MdiFont({ item, type = "outlined", alt, title }: { item: string; type?: string, alt?: string, title?: string }) {
