@@ -6,7 +6,7 @@ import EditStages from "@/components/Timer/EditStages"
 
 export default function TimerSettings({ timer, delTimer, updateTimer: up_updateTimer }: { timer: TimerData; delTimer: (id: number) => void; updateTimer: updateTimerFunction} ) {
     const updateTimer = (id: number, update: (timer: TimerData) => void) => {
-        up_updateTimer(id, t => { update(t); t.stop() })
+        up_updateTimer(id, t => { update(t); })
     }
     return (<div className="TimerSettings">
         <div className="toolbar">

@@ -6,11 +6,14 @@ interface alpha_percent {
 interface alpha_fraction {
     fraction: number
 }
-export class htmlcolor {
+export class htmlcolour {
     hue: number
     saturation: number
     brightness: number
     private _alpha_percent?: number | undefined
+    public clone() {
+        return new htmlcolour(this.hue, this.saturation, this.brightness, this._alpha_percent === undefined ? undefined : { percent: this._alpha_percent })
+    }
     public get alpha_percent(): number | undefined {
         return this._alpha_percent
     }
@@ -46,20 +49,20 @@ export class htmlcolor {
         }
     }
 
-    subtract(other: htmlcolor): htmlcolor {
+    subtract(other: htmlcolour): htmlcolour {
         if (this._alpha_percent === undefined)
-            return new htmlcolor(this.hue - other.hue, this.saturation - other.saturation, this.brightness - other.brightness)
-        return new htmlcolor(this.hue - other.hue, this.saturation - other.saturation, this.brightness - other.brightness, { percent: (this.alpha_percent as number) - (other.alpha_percent as number) })
+            return new htmlcolour(this.hue - other.hue, this.saturation - other.saturation, this.brightness - other.brightness)
+        return new htmlcolour(this.hue - other.hue, this.saturation - other.saturation, this.brightness - other.brightness, { percent: (this.alpha_percent as number) - (other.alpha_percent as number) })
     }
-    add(other: htmlcolor): htmlcolor {
+    add(other: htmlcolour): htmlcolour {
         if (this._alpha_percent === undefined)
-            return new htmlcolor(this.hue + other.hue, this.saturation + other.saturation, this.brightness + other.brightness)
-        return new htmlcolor(this.hue + other.hue, this.saturation + other.saturation, this.brightness + other.brightness, { percent: (this.alpha_percent as number) + (other.alpha_percent as number) })
+            return new htmlcolour(this.hue + other.hue, this.saturation + other.saturation, this.brightness + other.brightness)
+        return new htmlcolour(this.hue + other.hue, this.saturation + other.saturation, this.brightness + other.brightness, { percent: (this.alpha_percent as number) + (other.alpha_percent as number) })
     }
-    multiple_all(factor: number): htmlcolor {
+    multiple_all(factor: number): htmlcolour {
         if (this._alpha_percent === undefined)
-            return new htmlcolor(this.hue * factor, this.saturation * factor, this.brightness * factor)
-        return new htmlcolor(this.hue * factor, this.saturation * factor, this.brightness * factor, { percent: (this.alpha_percent as number) * factor })
+            return new htmlcolour(this.hue * factor, this.saturation * factor, this.brightness * factor)
+        return new htmlcolour(this.hue * factor, this.saturation * factor, this.brightness * factor, { percent: (this.alpha_percent as number) * factor })
     }
 
     toString(): string {
@@ -118,6 +121,10 @@ export class timerduration {
         }
     }
 
+    public clone() {
+        return new timerduration(this._seconds)
+    }
+
     constructor(seconds: number)
     constructor(minutes: number, seconds: number)
     constructor(hours: number, minutes: number, seconds: number)
@@ -140,10 +147,10 @@ export class timerduration {
 export class TimerStageColorData {
     startpoint: timerduration
     endpoint: timerduration
-    startcolor: htmlcolor
-    endcolor: htmlcolor
+    startcolor: htmlcolour
+    endcolor: htmlcolour
 
-    constructor(startpoint: timerduration, endpoint: timerduration, startcolor: htmlcolor, endcolor: htmlcolor) {
+    constructor(startpoint: timerduration, endpoint: timerduration, startcolor: htmlcolour, endcolor: htmlcolour) {
         if (endpoint.full_seconds > startpoint.full_seconds) {
             const temppoint = startpoint
             startpoint = endpoint
@@ -162,7 +169,7 @@ export class TimerStageColorData {
         return this.startpoint.full_seconds >= currenttime.full_seconds && this.endpoint.full_seconds <= currenttime.full_seconds
     }
 
-    current_color(currentpoint: timerduration): htmlcolor {
+    current_color(currentpoint: timerduration): htmlcolour {
         const offsecs = Math.abs(currentpoint.full_seconds - this.startpoint.full_seconds)
         const rangesecs = Math.abs(this.endpoint.full_seconds - this.startpoint.full_seconds)
         const offs = offsecs / rangesecs
@@ -174,20 +181,33 @@ export class TimerStageColorData {
 
 export class TimerStageData {
     duration: timerduration
-    editcolors: boolean = false
     colors: TimerStageColorData[] = []
 
     constructor(duration: timerduration = new timerduration(30)) {
         this.duration = duration
         //FIXME: TESTING SECTION {{{
-        this.colors.push(new TimerStageColorData(new timerduration(20), new timerduration(10), new htmlcolor(120, 100, 50), new htmlcolor(60, 100, 50)))
-        this.colors.push(new TimerStageColorData(new timerduration(10), new timerduration(0), new htmlcolor(60, 100, 50), new htmlcolor(0, 100, 50)))
+        this.colors.push(new TimerStageColorData(new timerduration(20), new timerduration(10), new htmlcolour(120, 100, 50), new htmlcolour(60, 100, 50)))
+        this.colors.push(new TimerStageColorData(new timerduration(10), new timerduration(0), new htmlcolour(60, 100, 50), new htmlcolour(0, 100, 50)))
         // END TESTING }}}
     }
 
     current_color_stage(currentpoint: timerduration): TimerStageColorData | undefined {
         return this.colors.find(c => c.active(currentpoint))
     }
+
+    addColour() {
+        const last = this.colors.at(-1)
+        const lastpos = last !== undefined ? last.endpoint.clone() : this.duration.clone()
+        const lastcol = last !== undefined ? last.endcolor.clone() : new htmlcolour(0, 0, 0)
+        //TODO: It would be nice to populate default startcolour and endcolour from TimerData.defaultcolor and TimerData.finishedcolor!
+        this.colors.push(new TimerStageColorData(lastpos, new timerduration(0), lastcol, new htmlcolour(0, 100, 50)))
+    }
+    delColour(n?: number) {
+        if (n === undefined || n >= this.colors.length)
+            n = this.colors.length - 1
+        this.colors.splice(n, 1)
+    }
+
 }
 
 export default class TimerData {
@@ -198,8 +218,8 @@ export default class TimerData {
     private _pausetime?: number
     stages: TimerStageData[] = [new TimerStageData()]
     _currentstage: number = 0
-    defaultcolor: htmlcolor = new htmlcolor(0, 0, 0)
-    finishedcolor: htmlcolor = new htmlcolor(0, 100, 50)
+    defaultcolor: htmlcolour = new htmlcolour(0, 0, 0)
+    finishedcolor: htmlcolour = new htmlcolour(0, 100, 50)
     protected _finishedflag: boolean = false
 
     addStage() {
@@ -235,7 +255,7 @@ export default class TimerData {
         }
     }
 
-    get color(): htmlcolor {
+    get color(): htmlcolour {
         if (this.finished)
             return this.finishedcolor
         const ccs = this.currentstage.current_color_stage(this.current)
@@ -285,6 +305,8 @@ export default class TimerData {
         return this._starttime + (this.stages.slice(0, this._currentstage).map(s => s.duration.full_seconds).reduce((p, c) => p + c, 0) * 1000)
     }
     protected get _current(): timerduration {
+        if (this._finishedflag)
+            return new timerduration(0)
         if (!this._started())
             return this.duration
         if (!this._paused())

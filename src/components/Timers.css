@@ -26,6 +26,15 @@ div.timers {
     flex-direction: row-reverse;
     width: 100%;
 }
+.editcolours .toolbar {
+    display: flex;
+    flex-direction: row-reverse;
+    width: 100%;
+}
+.editcolours {
+    display: flex;
+    flex-direction: column;
+}
 .Timer .spacer {
     width: 40px;
 }
@@ -45,9 +54,30 @@ button {
 .timerstage .total {
     text-decoration-line: overline;
 }
-.timeset {
+.editstage, .editcolour, .editcolours {
     display: flex;
-    margin-block: 1em;
+    margin-block-start: 0.5em;
+    margin-block-end: 0.5em;
+    padding-block-end: 0.5em;
+    border-block-end: 1px solid blue;
+}
+.editstage, .editcolours {
+    border-block-end-width: 5px;
+    border-block-end-style: double;
+}
+.editcolour {
+    border-block-end-color: aqua;
+}
+.editcolour table {
+    border: 1px dotted gray;
+    border-collapse: collapse;
+}
+.editcolour table tr,.editcolour table td {
+    border: 1px dotted gray;
+    padding-block: 0.5em;
+}
+.timeset {
+    display: flex;   
 }
 .timeset .seperator {
     display: flex;
@@ -56,7 +86,7 @@ button {
 .timeset .seperator span {
     display: inline-block;
 }
-.timeset .controls {
+.editstage .controls {
     display: flex;
     flex-direction: column;
 }
@@ -67,4 +97,11 @@ input {
     background-color: black;
     padding-left: 3px;
     border: 1px dotted white;
+}
+.durationicon {
+    font-size: x-small;
+}
+.colourswatch {
+    min-height: 1em;
+    min-width: 2em;
 }
