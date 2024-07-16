@@ -2,6 +2,8 @@
     border: 1px solid red;
     min-width: 100px;
     min-height: 100px;
+    padding: 0.25cm;
+    margin: 0.5cm;
 }
 div.timers {
     display: flex;
@@ -12,7 +14,8 @@ div.timers {
     min-height: 5em;
     text-align: center;
     border-color: green;
-    border-width: 1px;
+    border-width: 2px;
+    margin: 0.5cm;
     /* @apply flex items-center place-content-center; */
 }
 /* .delTimer {
@@ -30,7 +33,7 @@ button {
     border: outset 2px darkgray;
 }
 .timeleft {
-    font-size: xx-large;
+    font-size: xxx-large;
 }
 .nexttime {
     font-size: xx-small;
@@ -44,6 +47,7 @@ button {
 }
 .timeset {
     display: flex;
+    margin-block: 1em;
 }
 .timeset .seperator {
     display: flex;
@@ -51,6 +55,13 @@ button {
 }
 .timeset .seperator span {
     display: inline-block;
+}
+.timeset .controls {
+    display: flex;
+    flex-direction: column-reverse;
+}
+.TimerRun .controls {
+    display: flex;
 }
 input {
     background-color: black;

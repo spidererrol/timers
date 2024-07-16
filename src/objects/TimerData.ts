@@ -189,6 +189,15 @@ export default class TimerData {
     finishedcolor: htmlcolor = new htmlcolor(0, 100, 50)
     protected _finishedflag: boolean = false
 
+    addStage() {
+        this.stages.push(new TimerStageData())
+    }
+    delStage(n?:number) {
+        if (n === undefined || n >= this.stages.length)
+            n = this.stages.length - 1
+        this.stages.splice(n,1)
+    }
+
     public clone(): TimerData {
         const ret = new TimerData(this.id)
         ret.configured = this.configured
@@ -290,10 +299,11 @@ export default class TimerData {
         return this.current.toDisplay()
     }
     start() {
-        if (!this.started) {
+        if (this.finished || !this.started) {
             this._starttime = Date.now()
             this._pausetime = undefined
             this._finishedflag = false
+            this._currentstage = 0
         }
     }
     protected _stop() {

@@ -10,7 +10,7 @@ import FingerButton from "@/components/FingerButton"
 export default function Home() {
   const [nextId, setNextId] = useState(1)
   const [timers, setTimers] = useState([] as TimerData[]) // Immer didn't work for deeper updates.
-  const [tick,setTick] = useState(Date.now())
+  const [tick,setTick] = useState(()=>Date.now())
 
   useEffect(() => {
     const ticker = setInterval(()=>{

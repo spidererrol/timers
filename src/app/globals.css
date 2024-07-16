@@ -41,6 +41,10 @@ body {
   min-height: 0.5cm;
 }
 
+.fingersize.wide {
+  min-width: 4cm;
+}
+
 .digits {
   font-family: monospace;
   font-size: x-large;
