@@ -58,7 +58,7 @@ button {
 }
 .timeset .controls {
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
 }
 .TimerRun .controls {
     display: flex;

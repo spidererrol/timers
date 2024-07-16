@@ -53,3 +53,7 @@ body {
 .disabled {
   filter: grayscale(1);
 }
+
+.flexpadding {
+  flex-grow: 1;
+}
