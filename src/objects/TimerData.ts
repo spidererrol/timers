@@ -237,15 +237,21 @@ export default class TimerData {
         this.stages.splice(n, 1)
     }
 
-    public clone(): TimerData {
+    /**
+     * I may want to fix and then use this if I add support for a template.
+     * Copy-on-write would be a possibility but may not make sense.
+     * 
+     * @deprecated Broken - will link stages together!
+     */
+    public Xclone(): TimerData {
         const ret = new TimerData(this.id)
         ret.configured = this.configured
         ret._starttime = this._starttime
         ret._pausetime = this._pausetime
-        ret.stages = this.stages
+        ret.stages = this.stages // need .clone
         ret._currentstage = this._currentstage
-        ret.defaultcolor = this.defaultcolor
-        ret.finishedcolor = this.finishedcolor
+        ret.defaultcolor = this.defaultcolor.clone()
+        ret.finishedcolor = this.finishedcolor.clone()
         return ret
     }
 
