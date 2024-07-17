@@ -2,7 +2,7 @@ import { updateTimerFunction } from "@/libs/helpers"
 import TimerData from "@/objects/TimerData"
 import EditColour from "@/components/Timer/EditColour"
 import FingerButton from "@/components/FingerButton"
-import { AddIcon, ClockIcon } from "@/components/Icons"
+import { AddIcon, ClockIcon, ColourWheelIcon } from "@/components/Icons"
 import { tState } from "@/libs/State"
 
 function EditColoursSet({ timer, stageno, updateTimer }: { timer: TimerData, stageno: number, updateTimer: updateTimerFunction }) {
@@ -16,6 +16,6 @@ export default function EditColours({ timer, stageno, updateTimer, ColoursMode }
             <FingerButton title="Colours" onClick={() => ColoursMode.toggle()}><ClockIcon duration={timer.stages[stageno].duration} /></FingerButton>
         </div>
         <EditColoursSet timer={timer} stageno={stageno} updateTimer={updateTimer} />
-        <FingerButton className="short wide" onClick={() => updateTimer(timer.id, t => t.stages[stageno].addColour())}><AddIcon /></FingerButton>
+        <FingerButton className="short wide" onClick={() => updateTimer(timer.id, t => t.stages[stageno].addColour())}><AddIcon /><ColourWheelIcon /></FingerButton>
     </div>
 }

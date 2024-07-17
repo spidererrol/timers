@@ -1,7 +1,7 @@
 import { colourUpdater, updateTimerFunction } from "@/libs/helpers"
 import TimerData, { htmlcolour } from "@/objects/TimerData"
 import FingerButton from "@/components/FingerButton"
-import { DeleteIcon, AddIcon, DoneIcon, EditIcon } from "@/components/Icons"
+import { DeleteIcon, AddIcon, DoneIcon, EditIcon, ClockIcon } from "@/components/Icons"
 import EditStages from "@/components/Timer/EditStages"
 import { tState } from "@/libs/State"
 import { useState } from "react"
@@ -35,7 +35,7 @@ export default function TimerSettings({ timer, delTimer, updateTimer: up_updateT
             <VEColour name="Finished" colour={timer.finishedcolor} updateColour={uc => updateTimer(timer.id, t => uc(timer.finishedcolor))} />
         </table>
         <EditStages timer={timer} updateTimer={updateTimer} />
-        <FingerButton className="short wide" title="Add Stage" onClick={() => updateTimer(timer.id, t => t.addStage())}><AddIcon /></FingerButton>
+        <FingerButton className="short wide" title="Add Stage" onClick={() => updateTimer(timer.id, t => t.addStage())}><AddIcon /><ClockIcon /></FingerButton>
         <br />
         <FingerButton className="done" title="Done" onClick={() => updateTimer(timer.id, t => { t.configured = true })}><DoneIcon /></FingerButton>
     </div>

@@ -25,6 +25,7 @@ This I want to achieve in this project:
   * These can easily be handled via the stage colour spans.
   * The final colour is only used when timer has expired so has no use for a stage anyway.
 * [X] Edit default & final colours
+* [X] Distinguish add button for colours vs stages.
 
 ---
 END OF FILE
