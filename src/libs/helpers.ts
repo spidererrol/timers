@@ -1,4 +1,4 @@
-import TimerData from "@/objects/TimerData"
+import TimerData, { htmlcolour } from "@/objects/TimerData"
 
 export function padnumber(num: number, len: number = 2): string {
     let ret = "" + Math.floor(num)
@@ -9,3 +9,5 @@ export function padnumber(num: number, len: number = 2): string {
 }
 
 export type updateTimerFunction = (id: number, update: (timer: TimerData) => void) => void
+export type colourUpdater = (uc: (c: htmlcolour) => void) => void
+export type partUpdater = (n: number) => void

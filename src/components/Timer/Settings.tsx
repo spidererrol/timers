@@ -1,18 +1,39 @@
-import { updateTimerFunction } from "@/libs/helpers"
-import TimerData from "@/objects/TimerData"
+import { colourUpdater, updateTimerFunction } from "@/libs/helpers"
+import TimerData, { htmlcolour } from "@/objects/TimerData"
 import FingerButton from "@/components/FingerButton"
-import { DeleteIcon, AddIcon, DoneIcon } from "@/components/Icons"
+import { DeleteIcon, AddIcon, DoneIcon, EditIcon } from "@/components/Icons"
 import EditStages from "@/components/Timer/EditStages"
+import { tState } from "@/libs/State"
+import { useState } from "react"
+import { ViewEditColour } from "@/components/Timer/ViewEditColour"
+import { ColourSwatch } from "@/components/ColourSwatch"
 
-export default function TimerSettings({ timer, delTimer, updateTimer: up_updateTimer }: { timer: TimerData; delTimer: (id: number) => void; updateTimer: updateTimerFunction} ) {
+function VEColour({ name, colour, updateColour }: { name: string; colour: htmlcolour; updateColour: colourUpdater }) {
+    const Edit = new tState(useState(false))
+    return <>
+        <tr onClick={() => Edit.toggle()}>
+            <th className="text-xs">{name} Colour:</th>
+            <td><ColourSwatch colour={colour} /></td>
+            <td><FingerButton><EditIcon /></FingerButton></td>
+        </tr>
+        <ViewEditColour Edit={Edit} colour={colour} updateColour={updateColour} />
+    </>
+}
+
+export default function TimerSettings({ timer, delTimer, updateTimer: up_updateTimer }: { timer: TimerData; delTimer: (id: number) => void; updateTimer: updateTimerFunction }) {
     const updateTimer = (id: number, update: (timer: TimerData) => void) => {
-        up_updateTimer(id, t => { update(t); })
+        up_updateTimer(id, t => { update(t) })
     }
     return (<div className="TimerSettings">
         <div className="toolbar">
             <FingerButton className="delTimer" title="Delete this Timer" onClick={() => delTimer(timer.id)}><DeleteIcon /></FingerButton>
         </div>
-        <input type="text" value={timer.name} onChange={e => updateTimer(timer.id, t => timer.name = e.target.value)} size={8} />
+        <p className="label">Name:</p>
+        <input type="text" value={timer.name} onChange={e => updateTimer(timer.id, t => t.name = e.target.value)} size={8} placeholder="Name" />
+        <table className="editcolourtable">
+            <VEColour name="Default" colour={timer.defaultcolor} updateColour={uc => updateTimer(timer.id, t => uc(timer.defaultcolor))} />
+            <VEColour name="Finished" colour={timer.finishedcolor} updateColour={uc => updateTimer(timer.id, t => uc(timer.finishedcolor))} />
+        </table>
         <EditStages timer={timer} updateTimer={updateTimer} />
         <FingerButton className="short wide" title="Add Stage" onClick={() => updateTimer(timer.id, t => t.addStage())}><AddIcon /></FingerButton>
         <br />

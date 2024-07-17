@@ -68,11 +68,11 @@ button {
 .editcolour {
     border-block-end-color: aqua;
 }
-.editcolour table {
+.editcolourtable {
     border: 1px dotted gray;
     border-collapse: collapse;
 }
-.editcolour table tr,.editcolour table td {
+.editcolourtable tr,.editcolourtable td {
     border: 1px dotted gray;
     padding-block: 0.5em;
 }
@@ -130,4 +130,7 @@ input {
     width: 1px;
     height: 1.3em;
     background: white;
+}
+.label {
+    font-size: x-small;
 }

@@ -3,7 +3,6 @@
 This I want to achieve in this project:
 
 * [ ] Adjustable default length for timers
-* [ ] Edit default & final colours
 
 ## Bonus items
 
@@ -24,6 +23,7 @@ This I want to achieve in this project:
 * [ ] ~~Should default and/or final colours be per-stage?~~ (No)
   * These can easily be handled via the stage colour spans.
   * The final colour is only used when timer has expired so has no use for a stage anyway.
+* [X] Edit default & final colours
 
 ---
 END OF FILE

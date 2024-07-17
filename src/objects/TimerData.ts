@@ -33,6 +33,9 @@ export class htmlcolour {
     public set alpha_fraction(value: number) {
         this._alpha_percent = value * 100
     }
+    invert() {
+        return new htmlcolour(360 - this.hue, 100 - this.saturation, 100 - this.brightness)
+    }
 
     constructor(hue: number, saturation: number, brightness: number, alpha?: alpha_percent | alpha_fraction) {
         this.hue = hue

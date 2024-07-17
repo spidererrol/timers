@@ -4,9 +4,7 @@ import { ColourSwatch } from "@/components/ColourSwatch"
 import NumberScroller from "@/components/NumberScroller"
 import { useState } from "react"
 import { TJHCSSProperties } from "@/libs/CSSExtensions"
-
-type colourUpdater = (uc: (c: htmlcolour) => void) => void
-type partUpdater = (n: number) => void
+import { colourUpdater, partUpdater } from "@/libs/helpers"
 
 function ColourPart({ PartName, colour, value, max, updatePart }: { PartName: "Hue" | "Saturation" | "Brightness"; value: number; max: number; colour: htmlcolour; updatePart: partUpdater }) {
     const Edit = new tState(useState(false))
