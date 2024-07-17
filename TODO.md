@@ -4,7 +4,6 @@ This I want to achieve in this project:
 
 * [ ] Adjustable default length for timers
 * [ ] Edit default & final colours
-    * [ ] Should default and/or final colours be per-stage?
 
 ## Bonus items
 
@@ -22,6 +21,9 @@ This I want to achieve in this project:
 * [X] Alarm after each stage
 * [X] Add sliders to edit colours ~~instead of~~ <u>as well as</u> NumberScrollers
 * [X] Ability to set timers as either (hours):minutes:seconds or just seconds >= 60.
+* [ ] ~~Should default and/or final colours be per-stage?~~ (No)
+  * These can easily be handled via the stage colour spans.
+  * The final colour is only used when timer has expired so has no use for a stage anyway.
 
 ---
 END OF FILE
