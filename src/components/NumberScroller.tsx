@@ -8,9 +8,10 @@ interface NumberScrollerProps {
     updateValue: (n: number) => void
     min?: number
     max?: number
+    digits?: number
 }
 
-export default function NumberScroller({ value, updateValue, min, max }: NumberScrollerProps) {
+export default function NumberScroller({ value, updateValue, min, max, digits = 2 }: NumberScrollerProps) {
     if (Number.isNaN(value))
         value = 0
     let incClass = "short"
@@ -24,7 +25,7 @@ export default function NumberScroller({ value, updateValue, min, max }: NumberS
             <FingerButton className={incClass} onClick={() => updateValue(Math.min(value + 10, max ?? Number.POSITIVE_INFINITY))}><IncIcon /><IncIcon /></FingerButton>
             <FingerButton className={incClass} onClick={() => updateValue(value + 1)}><IncIcon /></FingerButton>
             {/* <p className="digits">{padnumber(value)}</p> */}
-            <input className="digits" type="number" min={min} max={max} size={2} value={value}
+            <input className="digits" type="number" min={min} max={max} size={digits} value={value}
                 onChange={
                     e => {
                         if (

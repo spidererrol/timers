@@ -9,6 +9,7 @@ import EditFile from "famfamfam-silk/dist/png/pencil.png"
 import ColourWheelFile from "famfamfam-silk/dist/png/color_wheel.png"
 import ClockFile from "famfamfam-silk/dist/png/clock.png"
 import { timerduration } from "@/objects/TimerData"
+import { padnumber } from "@/libs/helpers"
 
 export interface IconParams {
     alt?: string
@@ -47,6 +48,10 @@ export function ClockIcon({ alt = "Times", title, duration }: IconParams & { dur
     if (duration === undefined)
         return <Image className="icon" alt={alt} title={title} src={ClockFile} />
     return <span className="durationicon">{duration.toDisplay()}</span>
+}
+
+export function SecondsIcon({ alt = "Seconds", title, duration }: IconParams & { duration: timerduration }) {
+    return <span className="durationicon">{padnumber(Math.floor(duration.full_seconds), 3)}</span>
 }
 
 function MdiFont({ item, type = "outlined", alt, title }: { item: string; type?: string, alt?: string, title?: string }) {

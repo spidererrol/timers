@@ -3,7 +3,6 @@
 This I want to achieve in this project:
 
 * [ ] Adjustable default length for timers
-* [ ] Ability to set timers as either (hours):minutes:seconds or just seconds >= 60.
 * [ ] Edit default & final colours
     * [ ] Should default and/or final colours be per-stage?
 
@@ -11,6 +10,7 @@ This I want to achieve in this project:
 
 * [ ] Display a real time clock on screen.
     * [ ] Real time alarms?
+* [ ] Allow colour times to be edited as seconds?
 
 ## DONE
 
@@ -21,6 +21,7 @@ This I want to achieve in this project:
 * [X] Quick reset-and-restart for each timer.
 * [X] Alarm after each stage
 * [X] Add sliders to edit colours ~~instead of~~ <u>as well as</u> NumberScrollers
+* [X] Ability to set timers as either (hours):minutes:seconds or just seconds >= 60.
 
 ---
 END OF FILE
