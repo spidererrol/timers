@@ -3,6 +3,7 @@
 This I want to achieve in this project:
 
 * [ ] Adjustable default length for timers
+* [ ] Prevent deleting of last stage.
 
 ## Bonus items
 
