@@ -2,7 +2,6 @@
 
 This I want to achieve in this project:
 
-* [ ] Add sliders to edit colours instead of NumberScrollers
 * [ ] Adjustable default length for timers
 * [ ] Ability to set timers as either (hours):minutes:seconds or just seconds >= 60.
 * [ ] Edit default & final colours
@@ -21,6 +20,7 @@ This I want to achieve in this project:
 * [X] Multi-stage timers (eg main time, alarm, then cooldown, alarm)
 * [X] Quick reset-and-restart for each timer.
 * [X] Alarm after each stage
+* [X] Add sliders to edit colours ~~instead of~~ <u>as well as</u> NumberScrollers
 
 ---
 END OF FILE
