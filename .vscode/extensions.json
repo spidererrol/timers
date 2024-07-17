@@ -2,6 +2,7 @@
     "recommendations": [
         "bradlc.vscode-tailwindcss",
         "burkeholland.simple-react-snippets",
-        "dejmedus.tailwind-sorter"
+        "dejmedus.tailwind-sorter",
+        "gruntfuggly.todo-tree"
     ]
 }
