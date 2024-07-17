@@ -8,6 +8,11 @@ This I want to achieve in this project:
     [ ] Edit default & final colours
         [ ] Should default and/or final colours be per-stage?
 
+## Bonus items
+
+    [ ] Display a real time clock on screen.
+        [ ] Real time alarms?
+
 ## DONE
 
     [X] Flexible number of timers (add & remove timers)
