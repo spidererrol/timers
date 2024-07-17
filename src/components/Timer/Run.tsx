@@ -6,7 +6,6 @@ import { tState } from "@/libs/State"
 import { useState } from "react"
 
 export default function TimerRun({ timer, updateTimer }: { timer: TimerData; updateTimer: updateTimerFunction }) {
-    const Mute = new tState(useState(false))
     return (<div className={"TimerRun" + (timer.finished ? " finished" : "")} style={{ "background": timer.color.toString() }}>
         <div className="toolbar">
             <FingerButton className="editTimer" title="Edit this Timer" onClick={() => updateTimer(timer.id, t => { t.configured = false })}><EditIcon /></FingerButton>
@@ -21,8 +20,8 @@ export default function TimerRun({ timer, updateTimer }: { timer: TimerData; upd
             {timer.started && !timer.paused && !timer.finished ? (<FingerButton onClick={() => updateTimer(timer.id, t => { t.pause() })}><PauseIcon /></FingerButton>) : <></>}
             {timer.started || timer.finished ? <FingerButton onClick={() => updateTimer(timer.id, t => { t.stop() })}><StopIcon /></FingerButton> : <></>}
             {timer.started || timer.paused ? <FingerButton onClick={() => updateTimer(timer.id, t => { t.reset() })}><RestartIcon /></FingerButton> : <></>}
-            {timer.finished && !Mute.state ? <FingerButton><AlarmMuteIcon /></FingerButton> : <></>}
+            {timer.alarmActive() ? <FingerButton onClick={() => { timer.stopAlarms() }}><AlarmMuteIcon /></FingerButton> : <></>}
         </div>
-        {timer.finished ? <audio src="/alarm.wav" autoPlay={true} onEnded={() => { Mute.toggle() }} /> : <></>}
+        {timer.alarmActive() ? <audio src="/alarm.wav" autoPlay={true} onEnded={() => { timer.stopAlarms() }} /> : <></>}
     </div>)
 }

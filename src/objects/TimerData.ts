@@ -179,9 +179,16 @@ export class TimerStageColorData {
     }
 }
 
+export enum AlarmState {
+    Pending,
+    Active,
+    Finished,
+}
+
 export class TimerStageData {
     duration: timerduration
     colors: TimerStageColorData[] = []
+    alarm: AlarmState = AlarmState.Pending
 
     constructor(duration: timerduration = new timerduration(30)) {
         this.duration = duration
@@ -243,10 +250,23 @@ export default class TimerData {
         return ret
     }
 
+    alarmActive(): boolean {
+        return this.stages.map(s => s.alarm == AlarmState.Active).reduce((p, c) => p || c)
+    }
+    resetAlarms() {
+        this.stages.forEach(s => s.alarm = AlarmState.Pending)
+    }
+    stopAlarms() {
+        this.stages.filter(s => s.alarm == AlarmState.Active).forEach(s => s.alarm = AlarmState.Finished)
+    }
+
     tick() {
         if (this._finished() && this._running()) {
+            if (this.currentstage.alarm == AlarmState.Pending)
+                this.currentstage.alarm = AlarmState.Active
             if (this._currentstage < (this.stages.length - 1)) {
                 this._currentstage++
+                this.currentstage.alarm = AlarmState.Pending
                 // this._starttime = Date.now() // I partly think it would be nicer to track
             } else {
                 this._stop()
@@ -339,6 +359,7 @@ export default class TimerData {
             this._pausetime = undefined
             this._finishedflag = false
             this._currentstage = 0
+            this.resetAlarms()
         }
     }
     protected _stop() {
@@ -349,6 +370,7 @@ export default class TimerData {
         this._stop()
         this._finishedflag = false
         this._currentstage = 0
+        this.resetAlarms()
     }
     pause() {
         if (this.started && !this.paused) {
@@ -365,6 +387,7 @@ export default class TimerData {
         this._starttime = Date.now()
         this._pausetime = undefined
         this._finishedflag = false
+        this.resetAlarms()
     }
 
     constructor(id: number) {
