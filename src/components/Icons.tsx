@@ -71,3 +71,7 @@ export function StopIcon({ alt = "Stop", title }: IconParams) {
 export function RestartIcon({ alt = "Restart", title }: IconParams) {
     return <MdiFont item="restart_alt" alt={alt} title={title} /> // Oddly there is no "restart" icon.
 }
+
+export function AlarmMuteIcon({ alt = "Alarm Mute", title }: IconParams) {
+    return <MdiFont item="notifications_active" alt={alt} title={title} />
+}
