@@ -2,7 +2,8 @@
 
 This I want to achieve in this project:
 
-* [ ] Adjustable default length for timers
+* [ ] Adjustable default length for timers?
+  * [ ] Or maybe a "default" template timer?
 * [ ] Prevent deleting of last stage.
 
 ## Bonus items
