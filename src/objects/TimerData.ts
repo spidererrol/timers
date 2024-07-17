@@ -193,12 +193,8 @@ export class TimerStageData {
     colors: TimerStageColorData[] = []
     alarm: AlarmState = AlarmState.Pending
 
-    constructor(duration: timerduration = new timerduration(30)) {
+    constructor(duration: timerduration = new timerduration(300)) {
         this.duration = duration
-        //FIXME: TESTING SECTION {{{
-        this.colors.push(new TimerStageColorData(new timerduration(20), new timerduration(10), new htmlcolour(120, 100, 50), new htmlcolour(60, 100, 50)))
-        this.colors.push(new TimerStageColorData(new timerduration(10), new timerduration(0), new htmlcolour(60, 100, 50), new htmlcolour(0, 100, 50)))
-        // END TESTING }}}
     }
 
     current_color_stage(currentpoint: timerduration): TimerStageColorData | undefined {
@@ -395,13 +391,5 @@ export default class TimerData {
 
     constructor(id: number) {
         this.id = id
-        //FIXME: TESTING SECTION {{{
-        if (id <= 3) {
-            this.stages = []
-            for (let i = 0; i < id; i++) {
-                this.stages.push(new TimerStageData())
-            }
-        }
-        // }}} END TESTING SECTION
     }
 }
