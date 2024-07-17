@@ -1,9 +1,9 @@
 import { updateTimerFunction } from "@/libs/helpers"
 import TimerData from "@/objects/TimerData"
 import FingerButton from "@/components/FingerButton"
-import { EditIcon, PlayIcon, PauseIcon, StopIcon } from "@/components/Icons"
+import { EditIcon, PlayIcon, PauseIcon, StopIcon, RestartIcon } from "@/components/Icons"
 
-export default function TimerRun({ timer, updateTimer }: { timer: TimerData; updateTimer: updateTimerFunction} ) {
+export default function TimerRun({ timer, updateTimer }: { timer: TimerData; updateTimer: updateTimerFunction }) {
     return (<div className={"TimerRun" + (timer.finished ? " finished" : "")} style={{ "background": timer.color.toString() }}>
         <div className="toolbar">
             <FingerButton className="editTimer" title="Edit this Timer" onClick={() => updateTimer(timer.id, t => { t.configured = false })}><EditIcon /></FingerButton>
@@ -14,9 +14,10 @@ export default function TimerRun({ timer, updateTimer }: { timer: TimerData; upd
             <span className={"nexttime"}>{timer.nextstage !== undefined ? timer.nextstage.duration.toDisplay() : <></>}</span>
         </p>
         <div className="controls">
-            {timer.paused || !timer.started ? (<FingerButton onClick={() => updateTimer(timer.id, t => { if (t.paused) { t.resume()}  else { t.start()}  })}><PlayIcon /></FingerButton>) : <></>}
+            {timer.paused || !timer.started ? (<FingerButton onClick={() => updateTimer(timer.id, t => { if (t.paused) { t.resume() } else { t.start() } })}><PlayIcon /></FingerButton>) : <></>}
             {timer.started && !timer.paused && !timer.finished ? (<FingerButton onClick={() => updateTimer(timer.id, t => { t.pause() })}><PauseIcon /></FingerButton>) : <></>}
             {timer.started || timer.finished ? <FingerButton onClick={() => updateTimer(timer.id, t => { t.stop() })}><StopIcon /></FingerButton> : <></>}
+            {timer.started || timer.paused ? <FingerButton onClick={() => updateTimer(timer.id, t => { t.reset() })}><RestartIcon /></FingerButton> : <></>}
         </div>
         {timer.finished ? <audio src="/alarm.wav" autoPlay={true} /> : <></>}
     </div>)
