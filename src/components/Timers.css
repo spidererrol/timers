@@ -117,7 +117,7 @@ input {
     width: 100%;
 }
 .HueSlider {
-    background-image: linear-gradient(to right in hsl,  hsl(0 var(--tjh-saturation) var(--tjh-brightness)) 0%, hsl(180 var(--tjh-saturation) var(--tjh-brightness)) 50%, hsl(360 var(--tjh-saturation) var(--tjh-brightness)) 100%);
+    background-image: linear-gradient(to right in hsl,  hsl(0 var(--tjh-saturation) var(--tjh-brightness)) 0%, hsl(180 var(--tjh-saturation) var(--tjh-brightness)) 50%, hsl(359 var(--tjh-saturation) var(--tjh-brightness)) 100%);
 }
 .SaturationSlider {
     background-image: linear-gradient(to right in hsl,  hsl(var(--tjh-hue) 0 var(--tjh-brightness)) 0%, hsl(var(--tjh-hue) 100 var(--tjh-brightness)) 100%);
