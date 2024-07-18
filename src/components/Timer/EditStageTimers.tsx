@@ -1,10 +1,11 @@
 import { updateTimerFunction } from "@/libs/helpers"
 import TimerData from "@/objects/TimerData"
 import FingerButton from "@/components/FingerButton"
-import { ClockIcon, ColourWheelIcon, DeleteIcon, SecondsIcon } from "@/components/Icons"
+import { ClockIcon, ColourWheelIcon, SecondsIcon } from "@/components/Icons"
 import { DurationSetter } from "@/components/DurationSetter"
 import { useState } from "react"
 import { tState } from "@/libs/State"
+import { DeleteStageButton } from "./DeleteStageButton"
 
 export default function EditStageTimers({ timer, stageno, updateTimer, ColoursMode }: { timer: TimerData; stageno: number; updateTimer: updateTimerFunction, ColoursMode: tState }) {
     const stage = timer.stages[stageno]
@@ -19,8 +20,10 @@ export default function EditStageTimers({ timer, stageno, updateTimer, ColoursMo
                     ? <FingerButton title="H:M:S" onClick={() => SecondsMode.toggle()}><ClockIcon duration={stage.duration} /></FingerButton>
                     : <FingerButton title="Seconds" onClick={() => SecondsMode.toggle()}><SecondsIcon duration={stage.duration} /></FingerButton>
                 }
-                <FingerButton title="Remove Stage" onClick={() => { updateTimer(timer.id, t => t.delStage(stageno)) }}><DeleteIcon /></FingerButton>
+                <DeleteStageButton updateTimer={updateTimer} timer={timer} stageno={stageno} />
             </div>
         </div>
     )
 }
+
+
