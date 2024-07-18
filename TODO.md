@@ -4,6 +4,13 @@ This I want to achieve in this project:
 
 * [ ] Adjustable default length for timers?
   * [ ] Or maybe a "default" template timer?
+* [ ] reorder timers
+* [ ] auto order colour steps
+* [ ] import/export timers
+  * [ ] one
+  * [ ] all
+* fix next id on reload
+* copy timer
 
 ## Bonus items
 
