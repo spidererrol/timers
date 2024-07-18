@@ -48,6 +48,7 @@ export default function Home() {
         <Timers timers={timers} delTimer={delTimer} updateTimer={updateTimer} />
         <FingerButton className="addTimer" title="Add new timer" onClick={addTimer}><AddIcon /></FingerButton>
       </div>
+      <div className="rtc">{new Date().toLocaleTimeString()}</div>
     </main>
   )
 }

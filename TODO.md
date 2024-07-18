@@ -7,8 +7,7 @@ This I want to achieve in this project:
 
 ## Bonus items
 
-* [ ] Display a real time clock on screen.
-    * [ ] Real time alarms?
+* [ ] Real time alarms?
 * [ ] Allow colour times to be edited as seconds?
 * [ ] Remove tailwindcss. I barely use it so just setup the very few classes I want manually.
 
@@ -29,6 +28,7 @@ This I want to achieve in this project:
 * [X] Distinguish add button for colours vs stages.
 * [X] (Allow) Save timers into browser local storage [example code](https://www.freecodecamp.org/news/how-to-persist-a-logged-in-user-in-react/)
 * [X] Prevent deleting of last stage.
+* [X] Display a real time clock on screen.
 
 ---
 END OF FILE
