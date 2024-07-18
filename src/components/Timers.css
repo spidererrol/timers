@@ -16,11 +16,7 @@ div.timers {
     border-color: green;
     border-width: 2px;
     margin: 0.5cm;
-    /* @apply flex items-center place-content-center; */
 }
-/* .delTimer {
-    @apply flex items-center place-content-center;
-} */
 .Timer .toolbar {
     display: flex;
     flex-direction: row-reverse;
