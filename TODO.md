@@ -9,8 +9,7 @@ This I want to achieve in this project:
 * [ ] import/export timers
   * [ ] one
   * [ ] all
-* fix next id on reload
-* copy timer
+* [ ] copy timer
 
 ## Bonus items
 
@@ -36,6 +35,7 @@ This I want to achieve in this project:
 * [X] (Allow) Save timers into browser local storage [example code](https://www.freecodecamp.org/news/how-to-persist-a-logged-in-user-in-react/)
 * [X] Prevent deleting of last stage.
 * [X] Display a real time clock on screen.
+* [X] fix next id on reload
 
 ---
 END OF FILE

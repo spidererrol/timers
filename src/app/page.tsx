@@ -23,7 +23,9 @@ export default function Home() {
     const storedTimers = localStorage.getItem("timers")
     if (storedTimers) {
       const saveTimers = JSON.parse(storedTimers) as TimerData[]
-      setTimers(saveTimers.map(o => TimerData.restore(o)))
+      const newTimers = saveTimers.map(o => TimerData.restore(o)).map((t, i) => { t.id = i; return t })
+      setTimers(newTimers)
+      setNextId(newTimers.map(t=>t.id).reduce((p,c)=>Math.max(p,c)) + 1)
     }
   }, [])
 
