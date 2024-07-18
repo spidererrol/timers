@@ -5,6 +5,7 @@ This I want to achieve in this project:
 * [ ] Adjustable default length for timers?
   * [ ] Or maybe a "default" template timer?
 * [ ] Prevent deleting of last stage.
+* [ ] (Allow) Save timers into browser local storage [example code](https://www.freecodecamp.org/news/how-to-persist-a-logged-in-user-in-react/)
 
 ## Bonus items
 
