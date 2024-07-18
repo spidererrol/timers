@@ -15,7 +15,7 @@ export default function Home() {
   useEffect(() => {
     const ticker = setInterval(()=>{
       setTick(Date.now())
-    },500)
+    },100)
     return ()=>clearInterval(ticker)
   },[])
 
