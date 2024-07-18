@@ -11,6 +11,7 @@ This I want to achieve in this project:
 * [ ] Display a real time clock on screen.
     * [ ] Real time alarms?
 * [ ] Allow colour times to be edited as seconds?
+* [ ] Remove tailwindcss. I barely use it so just setup the very few classes I want manually.
 
 ## DONE
 
