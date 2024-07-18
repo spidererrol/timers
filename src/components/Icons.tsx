@@ -1,15 +1,18 @@
 import Image from "next/image"
+import { timerduration } from "@/objects/TimerData"
+import { padnumber } from "@/libs/helpers"
 import "@/components/Icons.css"
 import DeleteFile from "famfamfam-silk/dist/png/delete.png"
 import AddFile from "famfamfam-silk/dist/png/add.png"
 import DoneFile from "famfamfam-silk/dist/png/accept.png"
+import CancelFile from "famfamfam-silk/dist/png/cancel.png"
 import IncFile from "famfamfam-silk/dist/png/arrow_up.png"
 import DecFile from "famfamfam-silk/dist/png/arrow_down.png"
 import EditFile from "famfamfam-silk/dist/png/pencil.png"
 import ColourWheelFile from "famfamfam-silk/dist/png/color_wheel.png"
 import ClockFile from "famfamfam-silk/dist/png/clock.png"
-import { timerduration } from "@/objects/TimerData"
-import { padnumber } from "@/libs/helpers"
+import ImportFile from "famfamfam-silk/dist/png/page_go.png"
+import ExportFile from "famfamfam-silk/dist/png/page_save.png"
 
 export interface IconParams {
     alt?: string
@@ -26,6 +29,10 @@ export function AddIcon({ alt = "+", title }: IconParams) {
 
 export function DoneIcon({ alt = "Done", title }: IconParams) {
     return <Image className="icon" alt={alt} title={title} src={DoneFile} />
+}
+
+export function CancelIcon({ alt = "Cancel", title }: IconParams) {
+    return <Image className="icon" alt={alt} title={title} src={CancelFile} />
 }
 
 export function IncIcon({ alt = "Increase", title }: IconParams) {
@@ -54,6 +61,14 @@ export function SecondsIcon({ alt = "Seconds", title, duration }: IconParams & {
     return <span className="durationicon">{padnumber(Math.floor(duration.full_seconds), 3)}</span>
 }
 
+export function ImportIcon({ alt = "Import", title }: IconParams) {
+    return <Image className="icon" alt={alt} title={title} src={ImportFile} />
+}
+
+export function ExportIcon({ alt = "Import", title }: IconParams) {
+    return <Image className="icon" alt={alt} title={title} src={ExportFile} />
+}
+
 function MdiFont({ item, type = "outlined", alt, title }: { item: string; type?: string, alt?: string, title?: string }) {
     let mdiclass = "material-icons"
     if (type !== undefined && type != "")
@@ -79,4 +94,12 @@ export function RestartIcon({ alt = "Restart", title }: IconParams) {
 
 export function AlarmMuteIcon({ alt = "Alarm Mute", title }: IconParams) {
     return <MdiFont item="notifications_active" alt={alt} title={title} />
+}
+
+export function ClipCopyIcon({ alt = "Copy to Clipboard", title }: IconParams) {
+    return <MdiFont item="content_paste_go" alt={alt} title={title} />
+}
+
+export function ClipPasteIcon({ alt = "Paste from Clipboard", title }: IconParams) {
+    return <MdiFont item="content_paste" alt={alt} title={title} />
 }

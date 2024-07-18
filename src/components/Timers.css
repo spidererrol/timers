@@ -10,6 +10,19 @@ div.timers {
     flex-direction: row;
     flex-wrap: wrap;
 }
+.importExport {
+    display: flex;
+    flex-direction: row;
+}
+.buttonsPanel {
+    display: flex;
+    flex-direction: column;
+    margin: 0.5cm
+}
+.buttonsPanel legend {
+    /* This is just to keep layout pretty */
+    color: black;
+}
 .addTimer {
     min-width: 5em;
     min-height: 5em;
@@ -90,7 +103,7 @@ button {
 .TimerRun .controls {
     display: flex;
 }
-input {
+input,textarea {
     background-color: black;
     padding-left: 3px;
     border: 1px dotted white;

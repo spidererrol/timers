@@ -43,3 +43,20 @@ body {
 .rtc {
   font-size: xx-large;
 }
+
+.Exporter {
+  padding: 1cm;
+  margin: 1cm;
+  border: 1px gray dotted;
+}
+
+.Importer {
+  padding: 1cm;
+  margin: 1cm;
+  border: 1px gray dotted;
+}
+
+.Importer textarea, .Exporter textarea {
+  width: 90vw;
+  height: 10em;
+}

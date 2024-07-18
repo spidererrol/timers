@@ -1,32 +1,40 @@
 'use client'
 
-import Image from "next/image"
 import Timers from "@/components/Timers"
 import React, { useEffect, useState } from "react"
 import TimerData from "@/objects/TimerData"
-import { AddIcon } from "@/components/Icons"
+import { AddIcon, ExportIcon, ImportIcon } from "@/components/Icons"
 import FingerButton from "@/components/FingerButton"
+import { tState } from "@/libs/State"
+import { MainView } from "@/components/MainView"
+import { AllExporter } from "@/components/AllExporter"
+import { AllImporter } from "@/components/AllImporter"
 
 export default function Home() {
   const [nextId, setNextId] = useState(1)
   const [timers, setTimers] = useState([] as TimerData[]) // Immer didn't work for deeper updates.
-  const [tick, setTick] = useState(() => Date.now())
+  const [tick, setTick] = useState(() => new Date())
+  const ShowImporter = new tState(useState(false))
+  const ShowExporter = new tState(useState(false))
 
   useEffect(() => {
     const ticker = setInterval(() => {
-      setTick(Date.now())
+      setTick(new Date())
     }, 100)
     return () => clearInterval(ticker)
   }, [])
 
+  function importTimers(json: string) {
+    const saveTimers = JSON.parse(json) as TimerData[]
+    const newTimers = saveTimers.map(o => TimerData.restore(o)).map((t, i) => { t.id = i; return t })
+    setTimers(newTimers)
+    setNextId(newTimers.map(t => t.id).reduce((p, c) => Math.max(p, c)) + 1)
+  }
+
   useEffect(() => {
     const storedTimers = localStorage.getItem("timers")
-    if (storedTimers) {
-      const saveTimers = JSON.parse(storedTimers) as TimerData[]
-      const newTimers = saveTimers.map(o => TimerData.restore(o)).map((t, i) => { t.id = i; return t })
-      setTimers(newTimers)
-      setNextId(newTimers.map(t=>t.id).reduce((p,c)=>Math.max(p,c)) + 1)
-    }
+    if (storedTimers)
+      importTimers(storedTimers)
   }, [])
 
   function addTimer() {
@@ -46,11 +54,14 @@ export default function Home() {
 
   return (
     <main className="flex flex-col justify-between items-center">
-      <div className="timers">
-        <Timers timers={timers} delTimer={delTimer} updateTimer={updateTimer} />
-        <FingerButton className="addTimer" title="Add new timer" onClick={addTimer}><AddIcon /></FingerButton>
-      </div>
-      <div className="rtc">{new Date().toLocaleTimeString()}</div>
+      {
+        ShowExporter.state
+          ? <AllExporter timers={timers} Show={ShowExporter} />
+          : ShowImporter.state
+            ? <AllImporter timers={timers} Show={ShowImporter} importTimers={importTimers} />
+            : <MainView timers={timers} addTimer={addTimer} delTimer={delTimer} updateTimer={updateTimer} ShowExporter={ShowExporter} ShowImporter={ShowImporter} />
+      }
+      <div className="rtc" suppressHydrationWarning={true}>{tick.toLocaleTimeString("en-GB")}</div>
     </main>
   )
 }

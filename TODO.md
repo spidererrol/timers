@@ -8,7 +8,7 @@ This I want to achieve in this project:
 * [ ] auto order colour steps
 * [ ] import/export timers
   * [ ] one
-  * [ ] all
+  * [X] all
 * [ ] copy timer
 
 ## Bonus items
