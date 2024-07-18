@@ -58,5 +58,5 @@ body {
 
 .Importer textarea, .Exporter textarea {
   width: 90vw;
-  height: 10em;
+  min-height: 19em;
 }
