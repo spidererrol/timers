@@ -5,7 +5,6 @@ This I want to achieve in this project:
 * [ ] Adjustable default length for timers?
   * [ ] Or maybe a "default" template timer?
 * [ ] Prevent deleting of last stage.
-* [ ] (Allow) Save timers into browser local storage [example code](https://www.freecodecamp.org/news/how-to-persist-a-logged-in-user-in-react/)
 
 ## Bonus items
 
@@ -29,6 +28,7 @@ This I want to achieve in this project:
   * The final colour is only used when timer has expired so has no use for a stage anyway.
 * [X] Edit default & final colours
 * [X] Distinguish add button for colours vs stages.
+* [X] (Allow) Save timers into browser local storage [example code](https://www.freecodecamp.org/news/how-to-persist-a-logged-in-user-in-react/)
 
 ---
 END OF FILE
