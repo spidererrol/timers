@@ -11,6 +11,13 @@ export class htmlcolour {
     saturation: number
     brightness: number
     private _alpha_percent?: number | undefined
+
+    static restore(o: htmlcolour): htmlcolour {
+        const c = new htmlcolour(o.hue, o.saturation, o.brightness)
+        c._alpha_percent = o._alpha_percent
+        return c
+    }
+
     public clone() {
         return new htmlcolour(this.hue, this.saturation, this.brightness, this._alpha_percent === undefined ? undefined : { percent: this._alpha_percent })
     }
@@ -76,13 +83,22 @@ export class htmlcolour {
         ret += ")"
         return ret
     }
+
+    // hsl(): [number, number, number, alpha_percent | undefined] {
+    //     const alphaobj = this._alpha_percent === undefined ? undefined : { percent: this._alpha_percent }
+    //     return [this.hue, this.saturation, this.brightness, alphaobj]
+    // }
 }
 
 export class timerduration {
+    private _seconds: number
+
+    static restore(o: timerduration): timerduration {
+        return new timerduration(o._seconds)
+    }
     subtract(seconds: number): timerduration {
         return new timerduration(this.full_seconds - seconds)
     }
-    private _seconds: number
     public get full_seconds(): number {
         return this._seconds
     }
@@ -153,6 +169,11 @@ export class TimerStageColorData {
     startcolor: htmlcolour
     endcolor: htmlcolour
 
+    static restore(o: TimerStageColorData): TimerStageColorData {
+        const t = new TimerStageColorData(timerduration.restore(o.startpoint), timerduration.restore(o.endpoint), htmlcolour.restore(o.startcolor), htmlcolour.restore(o.endcolor))
+        return t
+    }
+
     constructor(startpoint: timerduration, endpoint: timerduration, startcolor: htmlcolour, endcolor: htmlcolour) {
         if (endpoint.full_seconds > startpoint.full_seconds) {
             const temppoint = startpoint
@@ -193,6 +214,13 @@ export class TimerStageData {
     colors: TimerStageColorData[] = []
     alarm: AlarmState = AlarmState.Pending
 
+    static restore(o: TimerStageData): TimerStageData {
+        const t = new TimerStageData(timerduration.restore(o.duration))
+        t.colors = o.colors.map(oc => TimerStageColorData.restore(oc))
+        t.alarm = o.alarm
+        return t
+    }
+
     constructor(duration: timerduration = new timerduration(300)) {
         this.duration = duration
     }
@@ -227,6 +255,22 @@ export default class TimerData {
     defaultcolor: htmlcolour = new htmlcolour(0, 0, 0)
     finishedcolor: htmlcolour = new htmlcolour(0, 100, 50)
     protected _finishedflag: boolean = false
+
+    static restore(o: TimerData): TimerData {
+        const t = new TimerData(o.id)
+        t.name = o.name
+        t.configured = o.configured
+        t.stages = o.stages.map(os => TimerStageData.restore(os))
+        t.defaultcolor = htmlcolour.restore(o.defaultcolor)
+        t.finishedcolor = htmlcolour.restore(o.finishedcolor)
+
+        // These will restore the active state of the timer:
+        t._starttime = o._starttime
+        t._pausetime = o._pausetime
+        t._currentstage = o._currentstage
+        t._finishedflag = o._finishedflag
+        return t
+    }
 
     addStage() {
         this.stages.push(new TimerStageData())
