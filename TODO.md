@@ -7,6 +7,7 @@ This I want to achieve in this project:
   * [X] all
 * [ ] Adjustable default length for timers?
   * [ ] Or maybe a "default" template timer?
+* [ ] Save/load sets of timers to named group
 
 ## Bonus items
 
