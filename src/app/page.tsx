@@ -52,6 +52,12 @@ export default function Home() {
     setNextId(n => n + 1)
   }
 
+  function copyTimer(id:number) {
+    const copyFrom = timers.find(t=>t.id == id) as TimerData
+    setTimers([...timers,copyFrom.clone(nextId)])
+    setNextId(n => n + 1)
+  }
+
   function delTimer(id: number) {
     setTimers([...timers.filter(t => t.id != id)])
   }
@@ -86,7 +92,7 @@ export default function Home() {
           ? <AllExporter timers={timers} Show={ShowExporter} />
           : ShowImporter.state
             ? <AllImporter timers={timers} Show={ShowImporter} importTimers={importTimers} />
-            : <MainView timers={timers} moveTimer={moveTimer} addTimer={addTimer} delTimer={delTimer} updateTimer={updateTimer} ShowExporter={ShowExporter} ShowImporter={ShowImporter} />
+            : <MainView timers={timers} moveTimer={moveTimer} addTimer={addTimer} copyTimer={copyTimer} delTimer={delTimer} updateTimer={updateTimer} ShowExporter={ShowExporter} ShowImporter={ShowImporter} />
       }
       <div className="rtc" suppressHydrationWarning={true}>{tick.toLocaleTimeString("en-GB")}</div>
     </main>

@@ -7,7 +7,6 @@ This I want to achieve in this project:
   * [X] all
 * [ ] Adjustable default length for timers?
   * [ ] Or maybe a "default" template timer?
-* [ ] copy timer
 
 ## Bonus items
 
@@ -37,6 +36,7 @@ This I want to achieve in this project:
 * [X] reorder timers
   * [X] drag & drop ([DnD kit](https://docs.dndkit.com/))
 * [X] auto order colour steps
+* [X] copy timer
 
 ---
 END OF FILE

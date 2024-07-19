@@ -292,21 +292,17 @@ export default class TimerData {
     }
 
     /**
-     * I may want to fix and then use this if I add support for a template.
-     * Copy-on-write would be a possibility but may not make sense.
-     * 
-     * @deprecated Broken - will link stages together!
+     * Duplicate this timer to a new copy.
      */
-    public Xclone(): TimerData {
-        const ret = new TimerData(this.id)
-        ret.configured = this.configured
-        ret._starttime = this._starttime
-        ret._pausetime = this._pausetime
-        ret.stages = this.stages // need .clone
-        ret._currentstage = this._currentstage
-        ret.defaultcolor = this.defaultcolor.clone()
-        ret.finishedcolor = this.finishedcolor.clone()
-        return ret
+    public clone(newId: number): TimerData {
+        const newTimer = TimerData.restore(this)
+        newTimer.id = newId
+        if (this.name.match(/\d$/)) {
+            newTimer.name = this.name.replace(/(\d+)$/, (_s, a) => "" + (Number.parseInt(a) + 1))
+        } else {
+            newTimer.name = this.name + " 2";
+        }
+        return newTimer
     }
 
     alarmActive(): boolean {

@@ -103,3 +103,7 @@ export function ClipCopyIcon({ alt = "Copy to Clipboard", title }: IconParams) {
 export function ClipPasteIcon({ alt = "Paste from Clipboard", title }: IconParams) {
     return <MdiFont item="content_paste" alt={alt} title={title} />
 }
+
+export function CopyIcon({ alt = "Copy", title }: IconParams) {
+    return <MdiFont item="content_copy" alt={alt} title={title} />
+}

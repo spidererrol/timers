@@ -60,6 +60,14 @@ div.timers {
     flex-direction: row-reverse;
     width: 100%;
 }
+.TimerSettings .toolbar {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+.flex-spacer {
+    flex-grow: 1;
+}
 .editcolours .toolbar {
     display: flex;
     flex-direction: row-reverse;

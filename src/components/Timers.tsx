@@ -7,7 +7,7 @@ import { DndContext, DragCancelEvent, DragEndEvent, DragStartEvent, PointerSenso
 import { State, tState } from "@/libs/State"
 import DropTarget from "./DropTarget"
 
-export default function Timers({ timers, delTimer, moveTimer, updateTimer }: { timers: TimerData[], delTimer: (id: number) => void, moveTimer: (from: number, to: number) => void, updateTimer: updateTimerFunction }) {
+export default function Timers({ timers, copyTimer, delTimer, moveTimer, updateTimer }: { timers: TimerData[], copyTimer: (id: number) => void, delTimer: (id: number) => void, moveTimer: (from: number, to: number) => void, updateTimer: updateTimerFunction }) {
     // const dragging = new tState(useState(false))
     const dragging = new State(useState<number | undefined>(undefined))
     // const debug = new State(useState(""))
@@ -17,7 +17,7 @@ export default function Timers({ timers, delTimer, moveTimer, updateTimer }: { t
     for (let i = 0; i < timers.length; i++) {
         const timer = timers[i]
         render_timers.push(<DropTarget key={"drop" + i} position={i} dragging={dragging.state !== undefined} />)
-        render_timers.push(<Timer key={i} timer={timer} delTimer={delTimer} updateTimer={updateTimer} dragging={dragging.state !== undefined && dragging.state != timer.id} />)
+        render_timers.push(<Timer key={i} timer={timer} copyTimer={()=>copyTimer(i)} delTimer={delTimer} updateTimer={updateTimer} dragging={dragging.state !== undefined && dragging.state != timer.id} />)
     }
     render_timers.push(<DropTarget key={"drop" + timers.length} position={timers.length} dragging={dragging.state !== undefined} />)
 

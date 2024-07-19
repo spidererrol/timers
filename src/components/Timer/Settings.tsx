@@ -1,7 +1,7 @@
 import { colourUpdater, updateTimerFunction } from "@/libs/helpers"
 import TimerData, { htmlcolour } from "@/objects/TimerData"
 import FingerButton from "@/components/FingerButton"
-import { DeleteIcon, AddIcon, DoneIcon, EditIcon, ClockIcon } from "@/components/Icons"
+import { DeleteIcon, AddIcon, DoneIcon, EditIcon, ClockIcon, CopyIcon } from "@/components/Icons"
 import EditStages from "@/components/Timer/EditStages"
 import { tState } from "@/libs/State"
 import { useState } from "react"
@@ -20,13 +20,20 @@ function VEColour({ name, colour, updateColour }: { name: string; colour: htmlco
     </>
 }
 
-export default function TimerSettings({ timer, delTimer, updateTimer: up_updateTimer }: { timer: TimerData; delTimer: (id: number) => void; updateTimer: updateTimerFunction }) {
+function DoneButton({ updateTimer, timer }: { updateTimer: (id: number, update: (timer: TimerData) => void) => void; timer: TimerData }) {
+    return <FingerButton className="done" title="Done" onClick={() => updateTimer(timer.id, t => { t.configured = true })}><DoneIcon /></FingerButton>
+}
+
+export default function TimerSettings({ timer, copyTimer, delTimer, updateTimer: up_updateTimer }: { timer: TimerData; copyTimer: () => void; delTimer: (id: number) => void; updateTimer: updateTimerFunction }) {
     const updateTimer = (id: number, update: (timer: TimerData) => void) => {
         up_updateTimer(id, t => { update(t) })
     }
     return (<div className="TimerSettings">
         <div className="toolbar">
+            <FingerButton className="copy" title="Copy" onClick={copyTimer}><CopyIcon /></FingerButton>
             <FingerButton className="delTimer" title="Delete this Timer" onClick={() => delTimer(timer.id)}><DeleteIcon /></FingerButton>
+            <div className="flex-spacer"></div>
+            <DoneButton updateTimer={updateTimer} timer={timer} />
         </div>
         <p className="label">Name:</p>
         <input type="text" value={timer.name} onChange={e => updateTimer(timer.id, t => t.name = e.target.value)} size={8} placeholder="Name" />
@@ -37,7 +44,7 @@ export default function TimerSettings({ timer, delTimer, updateTimer: up_updateT
         <EditStages timer={timer} updateTimer={updateTimer} />
         <FingerButton className="short wide" title="Add Stage" onClick={() => updateTimer(timer.id, t => t.addStage())}><AddIcon /><ClockIcon /></FingerButton>
         <br />
-        <FingerButton className="done" title="Done" onClick={() => updateTimer(timer.id, t => { t.configured = true })}><DoneIcon /></FingerButton>
+        <DoneButton updateTimer={updateTimer} timer={timer} />
     </div>
     )
 }
