@@ -2,13 +2,14 @@
 
 This I want to achieve in this project:
 
-* [ ] Adjustable default length for timers?
-  * [ ] Or maybe a "default" template timer?
 * [ ] reorder timers
+  * [ ] drag & drop ([DnD kit](https://docs.dndkit.com/))
 * [ ] auto order colour steps
 * [ ] import/export timers
   * [ ] one
   * [X] all
+* [ ] Adjustable default length for timers?
+  * [ ] Or maybe a "default" template timer?
 * [ ] copy timer
 
 ## Bonus items
