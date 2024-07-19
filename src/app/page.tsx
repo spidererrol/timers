@@ -40,7 +40,12 @@ export default function Home() {
   useEffect(() => {
     const storedTimers = localStorage.getItem("timers")
     if (storedTimers)
-      importTimers(storedTimers)
+      try {
+        importTimers(storedTimers)
+      } catch (_e) {
+        setTimers([])
+        setNextId(1)
+      }
 
     // This disables an miss-detected warning:
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -52,9 +57,9 @@ export default function Home() {
     setNextId(n => n + 1)
   }
 
-  function copyTimer(id:number) {
-    const copyFrom = timers.find(t=>t.id == id) as TimerData
-    setTimers([...timers,copyFrom.clone(nextId)])
+  function copyTimer(id: number) {
+    const copyFrom = timers.find(t => t.id == id) as TimerData
+    setTimers([...timers, copyFrom.clone(nextId)])
     setNextId(n => n + 1)
   }
 
