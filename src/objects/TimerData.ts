@@ -211,18 +211,28 @@ export enum AlarmState {
 
 export class TimerStageData {
     duration: timerduration
-    colors: TimerStageColorData[] = []
+    private _colors: TimerStageColorData[] = []
+    public get colors(): TimerStageColorData[] {
+        return this._colors // Don't sort here, it will confuse which item(s) I am editing!
+    }
+    public set colors(value: TimerStageColorData[]) {
+        this._colors = value.sort((a, b) => b.startpoint.full_seconds - a.startpoint.full_seconds)
+    }
     alarm: AlarmState = AlarmState.Pending
 
     static restore(o: TimerStageData): TimerStageData {
         const t = new TimerStageData(timerduration.restore(o.duration))
-        t.colors = o.colors.map(oc => TimerStageColorData.restore(oc))
+        t.colors = o._colors.map(oc => TimerStageColorData.restore(oc))
         t.alarm = o.alarm
         return t
     }
 
     constructor(duration: timerduration = new timerduration(300)) {
         this.duration = duration
+    }
+
+    sortColours() {
+        this._colors.sort((a, b) => b.startpoint.full_seconds - a.startpoint.full_seconds)
     }
 
     current_color_stage(currentpoint: timerduration): TimerStageColorData | undefined {

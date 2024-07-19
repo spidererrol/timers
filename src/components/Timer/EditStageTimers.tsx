@@ -15,7 +15,7 @@ export default function EditStageTimers({ timer, stageno, updateTimer, ColoursMo
             <div className="timerstage">{stageno + 1}</div>
             <DurationSetter useSeconds={SecondsMode} duration={stage.duration} updateDuration={ud => updateTimer(timer.id, t => { ud(t.stages[stageno].duration) })} />
             <div className="controls">
-                <FingerButton title="Colours" onClick={() => ColoursMode.toggle()}><ColourWheelIcon /></FingerButton>
+                <FingerButton title="Colours" onClick={() => { ColoursMode.toggle(); stage.sortColours() }}><ColourWheelIcon /></FingerButton>
                 {SecondsMode.state
                     ? <FingerButton title="H:M:S" onClick={() => SecondsMode.toggle()}><ClockIcon duration={stage.duration} /></FingerButton>
                     : <FingerButton title="Seconds" onClick={() => SecondsMode.toggle()}><SecondsIcon duration={stage.duration} /></FingerButton>

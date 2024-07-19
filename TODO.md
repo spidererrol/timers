@@ -2,7 +2,6 @@
 
 This I want to achieve in this project:
 
-* [ ] auto order colour steps
 * [ ] import/export timers
   * [ ] one
   * [X] all
@@ -37,6 +36,7 @@ This I want to achieve in this project:
 * [X] fix next id on reload
 * [X] reorder timers
   * [X] drag & drop ([DnD kit](https://docs.dndkit.com/))
+* [X] auto order colour steps
 
 ---
 END OF FILE

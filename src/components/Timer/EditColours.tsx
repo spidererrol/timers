@@ -13,7 +13,7 @@ function EditColoursSet({ timer, stageno, updateTimer }: { timer: TimerData, sta
 export default function EditColours({ timer, stageno, updateTimer, ColoursMode }: { timer: TimerData, stageno: number, updateTimer: updateTimerFunction, ColoursMode: tState }) {
     return <div className="editcolours">
         <div className="toolbar">
-            <FingerButton title="Colours" onClick={() => ColoursMode.toggle()}><ClockIcon duration={timer.stages[stageno].duration} /></FingerButton>
+            <FingerButton title="Colours" onClick={() => { ColoursMode.toggle(); timer.stages[stageno].sortColours() }}><ClockIcon duration={timer.stages[stageno].duration} /></FingerButton>
         </div>
         <EditColoursSet timer={timer} stageno={stageno} updateTimer={updateTimer} />
         <FingerButton className="short wide" onClick={() => updateTimer(timer.id, t => t.stages[stageno].addColour())}><AddIcon /><ColourWheelIcon /></FingerButton>
