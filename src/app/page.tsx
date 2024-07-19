@@ -41,7 +41,11 @@ export default function Home() {
     const storedTimers = localStorage.getItem("timers")
     if (storedTimers)
       importTimers(storedTimers)
+
+    // This disables an miss-detected warning:
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
 
   function addTimer() {
     setTimers([...timers, new TimerData(nextId)])
