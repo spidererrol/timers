@@ -29,6 +29,7 @@ export default function Home() {
     const newTimers = saveTimers.map(o => TimerData.restore(o)).map((t, i) => { t.id = i; return t })
     setTimers(newTimers)
     setNextId(newTimers.map(t => t.id).reduce((p, c) => Math.max(p, c)) + 1)
+    localStorage.setItem("timers", JSON.stringify(newTimers))
   }
 
   useEffect(() => {
