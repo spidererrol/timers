@@ -14,7 +14,7 @@ export default function TimerWrapper({ children, timer, dragging }: { children: 
 
     return (
         <fieldset className={"Timer" + (dragging ? " NoDrop" : "")} ref={setNodeRef} style={style} {...listeners} {...attributes}>
-            <legend>{timer.name} {timer.displayCurrent()}</legend>
+            <legend>{timer.name}</legend>
             {children}
         </fieldset>
     )
