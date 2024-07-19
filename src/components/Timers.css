@@ -1,9 +1,33 @@
-.Timer {
+.Timer, .DropTarget {
     border: 1px solid red;
     min-width: 100px;
     min-height: 100px;
     padding: 0.25cm;
     margin: 0.5cm;
+}
+.Timer {
+    touch-action: none;
+}
+.Timer {
+    height: fit-content;
+}
+.Timer.NoDrop {
+    border: 1px solid gray;
+}
+.DropTarget {
+    --dt-color: blue;
+    border: 1px dashed var(--dt-color);
+    min-width: 0.5cm;
+    padding-inline: 0;
+    margin-inline: 0;
+}
+.DropTarget.hover {
+    --dt-color: green;
+    background-color: var(--dt-color);
+    min-width: 100px;
+}
+.DropTarget legend {
+    color: var(--dt-color);
 }
 div.timers {
     display: flex;

@@ -2,8 +2,6 @@
 
 This I want to achieve in this project:
 
-* [ ] reorder timers
-  * [ ] drag & drop ([DnD kit](https://docs.dndkit.com/))
 * [ ] auto order colour steps
 * [ ] import/export timers
   * [ ] one
@@ -37,6 +35,8 @@ This I want to achieve in this project:
 * [X] Prevent deleting of last stage.
 * [X] Display a real time clock on screen.
 * [X] fix next id on reload
+* [X] reorder timers
+  * [X] drag & drop ([DnD kit](https://docs.dndkit.com/))
 
 ---
 END OF FILE

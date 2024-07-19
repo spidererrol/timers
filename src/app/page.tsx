@@ -9,6 +9,7 @@ import { tState } from "@/libs/State"
 import { MainView } from "@/components/MainView"
 import { AllExporter } from "@/components/AllExporter"
 import { AllImporter } from "@/components/AllImporter"
+import { arrayMoveImmutable } from "array-move"
 
 export default function Home() {
   const [nextId, setNextId] = useState(1)
@@ -24,9 +25,13 @@ export default function Home() {
     return () => clearInterval(ticker)
   }, [])
 
+  function reId(timers: TimerData[]) {
+    return timers.map((t, i) => { t.id = i; return t })
+  }
+
   function importTimers(json: string) {
     const saveTimers = JSON.parse(json) as TimerData[]
-    const newTimers = saveTimers.map(o => TimerData.restore(o)).map((t, i) => { t.id = i; return t })
+    const newTimers = reId(saveTimers.map(o => TimerData.restore(o)))
     setTimers(newTimers)
     setNextId(newTimers.map(t => t.id).reduce((p, c) => Math.max(p, c)) + 1)
     localStorage.setItem("timers", JSON.stringify(newTimers))
@@ -53,6 +58,23 @@ export default function Home() {
     localStorage.setItem("timers", JSON.stringify(newTimers))
   }
 
+  /**
+   * Move a timer.
+   * 
+   * @param id Id of timer to move
+   * @param before Move timer to be after the timer with this id
+   */
+  function moveTimer(id: number, before: number) {
+    // if (before <= id) ok
+    // if (before == id) ok
+    // if (before == id + 1) ok
+    if (before >= (id + 2))
+      before--
+    const newTimers = reId(arrayMoveImmutable(timers, id, before))
+    setTimers(newTimers)
+    localStorage.setItem("timers", JSON.stringify(newTimers))
+  }
+
   return (
     <main className="flex flex-col justify-between items-center">
       {
@@ -60,7 +82,7 @@ export default function Home() {
           ? <AllExporter timers={timers} Show={ShowExporter} />
           : ShowImporter.state
             ? <AllImporter timers={timers} Show={ShowImporter} importTimers={importTimers} />
-            : <MainView timers={timers} addTimer={addTimer} delTimer={delTimer} updateTimer={updateTimer} ShowExporter={ShowExporter} ShowImporter={ShowImporter} />
+            : <MainView timers={timers} moveTimer={moveTimer} addTimer={addTimer} delTimer={delTimer} updateTimer={updateTimer} ShowExporter={ShowExporter} ShowImporter={ShowImporter} />
       }
       <div className="rtc" suppressHydrationWarning={true}>{tick.toLocaleTimeString("en-GB")}</div>
     </main>

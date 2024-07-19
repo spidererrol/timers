@@ -1,0 +1,284 @@
+[
+    {
+        "name": "Grabber",
+        "configured": true,
+        "stages": [
+            {
+                "colors": [],
+                "alarm": 0,
+                "duration": {
+                    "_seconds": 180
+                }
+            },
+            {
+                "colors": [],
+                "alarm": 0,
+                "duration": {
+                    "_seconds": 60
+                }
+            }
+        ],
+        "_currentstage": 0,
+        "defaultcolor": {
+            "hue": 0,
+            "saturation": 0,
+            "brightness": 0
+        },
+        "finishedcolor": {
+            "hue": 0,
+            "saturation": 100,
+            "brightness": 50
+        },
+        "_finishedflag": false,
+        "id": 0
+    },
+    {
+        "name": "Timer",
+        "configured": true,
+        "stages": [
+            {
+                "colors": [
+                    {
+                        "startpoint": {
+                            "_seconds": 60
+                        },
+                        "endpoint": {
+                            "_seconds": 0
+                        },
+                        "startcolor": {
+                            "hue": 0,
+                            "saturation": 0,
+                            "brightness": 0
+                        },
+                        "endcolor": {
+                            "hue": 0,
+                            "saturation": 100,
+                            "brightness": 50
+                        }
+                    }
+                ],
+                "alarm": 0,
+                "duration": {
+                    "_seconds": 350
+                }
+            },
+            {
+                "colors": [
+                    {
+                        "startpoint": {
+                            "_seconds": 180
+                        },
+                        "endpoint": {
+                            "_seconds": 0
+                        },
+                        "startcolor": {
+                            "hue": 229,
+                            "saturation": 100,
+                            "brightness": 54
+                        },
+                        "endcolor": {
+                            "hue": 173,
+                            "saturation": 42,
+                            "brightness": 33
+                        }
+                    }
+                ],
+                "alarm": 0,
+                "duration": {
+                    "_seconds": 190
+                }
+            }
+        ],
+        "_currentstage": 0,
+        "defaultcolor": {
+            "hue": 0,
+            "saturation": 0,
+            "brightness": 0
+        },
+        "finishedcolor": {
+            "hue": 122,
+            "saturation": 100,
+            "brightness": 50
+        },
+        "_finishedflag": false,
+        "id": 1
+    },
+    {
+        "name": "Timer",
+        "configured": true,
+        "stages": [
+            {
+                "colors": [
+                    {
+                        "startpoint": {
+                            "_seconds": 60
+                        },
+                        "endpoint": {
+                            "_seconds": 0
+                        },
+                        "startcolor": {
+                            "hue": 0,
+                            "saturation": 0,
+                            "brightness": 0
+                        },
+                        "endcolor": {
+                            "hue": 0,
+                            "saturation": 100,
+                            "brightness": 50
+                        }
+                    }
+                ],
+                "alarm": 0,
+                "duration": {
+                    "_seconds": 350
+                }
+            },
+            {
+                "colors": [
+                    {
+                        "startpoint": {
+                            "_seconds": 180
+                        },
+                        "endpoint": {
+                            "_seconds": 0
+                        },
+                        "startcolor": {
+                            "hue": 249,
+                            "saturation": 100,
+                            "brightness": 54
+                        },
+                        "endcolor": {
+                            "hue": 185,
+                            "saturation": 47,
+                            "brightness": 33
+                        }
+                    },
+                    {
+                        "startpoint": {
+                            "_seconds": 190
+                        },
+                        "endpoint": {
+                            "_seconds": 180
+                        },
+                        "startcolor": {
+                            "hue": 359,
+                            "saturation": 100,
+                            "brightness": 53
+                        },
+                        "endcolor": {
+                            "hue": 237,
+                            "saturation": 100,
+                            "brightness": 50
+                        }
+                    }
+                ],
+                "alarm": 0,
+                "duration": {
+                    "_seconds": 190
+                }
+            }
+        ],
+        "_currentstage": 0,
+        "defaultcolor": {
+            "hue": 0,
+            "saturation": 0,
+            "brightness": 0
+        },
+        "finishedcolor": {
+            "hue": 121,
+            "saturation": 100,
+            "brightness": 50
+        },
+        "_finishedflag": false,
+        "id": 2
+    },
+    {
+        "name": "Timer",
+        "configured": true,
+        "stages": [
+            {
+                "colors": [
+                    {
+                        "startpoint": {
+                            "_seconds": 60
+                        },
+                        "endpoint": {
+                            "_seconds": 0
+                        },
+                        "startcolor": {
+                            "hue": 0,
+                            "saturation": 0,
+                            "brightness": 0
+                        },
+                        "endcolor": {
+                            "hue": 0,
+                            "saturation": 100,
+                            "brightness": 50
+                        }
+                    }
+                ],
+                "alarm": 0,
+                "duration": {
+                    "_seconds": 350
+                }
+            },
+            {
+                "colors": [
+                    {
+                        "startpoint": {
+                            "_seconds": 190
+                        },
+                        "endpoint": {
+                            "_seconds": 180
+                        },
+                        "startcolor": {
+                            "hue": 235,
+                            "saturation": 100,
+                            "brightness": 53
+                        },
+                        "endcolor": {
+                            "hue": 223,
+                            "saturation": 100,
+                            "brightness": 50
+                        }
+                    },
+                    {
+                        "startpoint": {
+                            "_seconds": 180
+                        },
+                        "endpoint": {
+                            "_seconds": 0
+                        },
+                        "startcolor": {
+                            "hue": 223,
+                            "saturation": 100,
+                            "brightness": 50
+                        },
+                        "endcolor": {
+                            "hue": 190,
+                            "saturation": 54,
+                            "brightness": 32
+                        }
+                    }
+                ],
+                "alarm": 0,
+                "duration": {
+                    "_seconds": 190
+                }
+            }
+        ],
+        "_currentstage": 0,
+        "defaultcolor": {
+            "hue": 0,
+            "saturation": 0,
+            "brightness": 0
+        },
+        "finishedcolor": {
+            "hue": 124,
+            "saturation": 100,
+            "brightness": 50
+        },
+        "_finishedflag": false,
+        "id": 3
+    }
+]
