@@ -5,6 +5,7 @@ import TimerData from "@/objects/TimerData"
 import { StateDefault } from "@/libs/State"
 import { arrayMoveImmutable } from "array-move"
 import PageSelector, { PageName } from "@/components/PageSelector"
+import { loadData, saveData } from "@/libs/dataStorage"
 
 export default function Home() {
   const [nextId, setNextId] = useState(1)
@@ -22,24 +23,26 @@ export default function Home() {
   function reId(timers: TimerData[]) {
     return timers.map((t, i) => { t.id = i; return t })
   }
+  function resetNextId(timerslist?: TimerData[]) {
+    if (timerslist === undefined)
+      timerslist = timers
+    setNextId(timerslist.map(t => t.id).reduce((p, c) => Math.max(p, c)) + 1)
+  }
 
-  function importTimers(json: string) {
-    const saveTimers = JSON.parse(json) as TimerData[]
+  function importTimersObj(saveTimers: TimerData[]) {
     const newTimers = reId(saveTimers.map(o => TimerData.restore(o)))
     setTimers(newTimers)
-    setNextId(newTimers.map(t => t.id).reduce((p, c) => Math.max(p, c)) + 1)
-    localStorage.setItem("timers", JSON.stringify(newTimers))
+    resetNextId(newTimers)
+    saveData("timers", newTimers)
+  }
+
+  function importTimers(json: string) {
+    importTimersObj((JSON.parse(json) as TimerData[]))
   }
 
   useEffect(() => {
-    const storedTimers = localStorage.getItem("timers")
-    if (storedTimers)
-      try {
-        importTimers(storedTimers)
-      } catch (_e) {
-        setTimers([])
-        setNextId(1)
-      }
+
+    importTimersObj(loadData("timers", [] as TimerData[]))
 
     // This disables an miss-detected warning:
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -64,7 +67,7 @@ export default function Home() {
   function updateTimer(id: number, update: (timer: TimerData) => void) {
     const newTimers = [...timers.map(t => { if (t.id == id) { update(t); return t } else { return t } })]
     setTimers(newTimers)
-    localStorage.setItem("timers", JSON.stringify(newTimers))
+    saveData("timers",newTimers)
   }
 
   /**
@@ -81,7 +84,7 @@ export default function Home() {
       before--
     const newTimers = reId(arrayMoveImmutable(timers, id, before))
     setTimers(newTimers)
-    localStorage.setItem("timers", JSON.stringify(newTimers))
+    saveData("timers",newTimers)
   }
 
   return (

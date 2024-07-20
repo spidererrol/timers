@@ -8,6 +8,7 @@ This I want to achieve in this project:
 * [ ] Adjustable default length for timers?
   * [ ] Or maybe a "default" template timer?
 * [ ] Save/load sets of timers to named group
+  * [ ] Auto-save on deleting a timer.
 
 ## Bonus items
 
