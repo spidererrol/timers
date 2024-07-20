@@ -35,8 +35,11 @@ div.timers {
     flex-wrap: wrap;
 }
 .importExport {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.importExport > * {
+    margin: 3px;
 }
 .buttonsPanel {
     display: flex;
@@ -175,4 +178,10 @@ input,textarea {
 }
 .label {
     font-size: x-small;
+}
+.not-implemented {
+    font-size: larger;
+    margin: 1cm;
+    padding: 1cm;
+    border: 1px solid red;
 }

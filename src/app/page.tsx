@@ -5,18 +5,18 @@ import React, { useEffect, useState } from "react"
 import TimerData from "@/objects/TimerData"
 import { AddIcon, ExportIcon, ImportIcon } from "@/components/Icons"
 import FingerButton from "@/components/FingerButton"
-import { tState } from "@/libs/State"
+import { StateDefault, tState } from "@/libs/State"
 import { MainView } from "@/components/MainView"
 import { AllExporter } from "@/components/AllExporter"
 import { AllImporter } from "@/components/AllImporter"
 import { arrayMoveImmutable } from "array-move"
+import PageSelector, { PageName } from "@/components/PageSelector"
 
 export default function Home() {
   const [nextId, setNextId] = useState(1)
   const [timers, setTimers] = useState([] as TimerData[]) // Immer didn't work for deeper updates.
   const [tick, setTick] = useState(() => new Date())
-  const ShowImporter = new tState(useState(false))
-  const ShowExporter = new tState(useState(false))
+  const pagename = new StateDefault(useState(PageName.MainView),PageName.MainView)
 
   useEffect(() => {
     const ticker = setInterval(() => {
@@ -92,13 +92,7 @@ export default function Home() {
 
   return (
     <main className="flex flex-col justify-between items-center">
-      {
-        ShowExporter.state
-          ? <AllExporter timers={timers} Show={ShowExporter} />
-          : ShowImporter.state
-            ? <AllImporter timers={timers} Show={ShowImporter} importTimers={importTimers} />
-            : <MainView timers={timers} moveTimer={moveTimer} addTimer={addTimer} copyTimer={copyTimer} delTimer={delTimer} updateTimer={updateTimer} ShowExporter={ShowExporter} ShowImporter={ShowImporter} />
-      }
+      <PageSelector pagename={pagename} timers={timers} moveTimer={moveTimer} addTimer={addTimer} copyTimer={copyTimer} delTimer={delTimer} updateTimer={updateTimer} importTimers={importTimers} />
       <div className="rtc" suppressHydrationWarning={true}>{tick.toLocaleTimeString("en-GB")}</div>
     </main>
   )

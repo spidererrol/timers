@@ -13,6 +13,8 @@ import ColourWheelFile from "famfamfam-silk/dist/png/color_wheel.png"
 import ClockFile from "famfamfam-silk/dist/png/clock.png"
 import ImportFile from "famfamfam-silk/dist/png/page_go.png"
 import ExportFile from "famfamfam-silk/dist/png/page_save.png"
+import SaveFile from "famfamfam-silk/dist/png/disk.png"
+import LoadFile from "famfamfam-silk/dist/png/folder.png"
 
 export interface IconParams {
     alt?: string
@@ -67,6 +69,14 @@ export function ImportIcon({ alt = "Import", title }: IconParams) {
 
 export function ExportIcon({ alt = "Import", title }: IconParams) {
     return <Image className="icon" alt={alt} title={title} src={ExportFile} />
+}
+
+export function SaveIcon({ alt = "Save", title }: IconParams) {
+    return <Image className="icon" alt={alt} title={title} src={SaveFile} />
+}
+
+export function LoadIcon({ alt = "Load", title }: IconParams) {
+    return <Image className="icon" alt={alt} title={title} src={LoadFile} />
 }
 
 function MdiFont({ item, type = "outlined", alt, title }: { item: string; type?: string, alt?: string, title?: string }) {

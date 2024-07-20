@@ -1,19 +1,31 @@
-import { tState } from "@/libs/State"
+import { State, StateDefault, tState } from "@/libs/State"
 import TimerData from "@/objects/TimerData"
 import FingerButton from "@/components/FingerButton"
-import { ImportIcon, ExportIcon, AddIcon } from "@/components/Icons"
+import { ImportIcon, ExportIcon, AddIcon, LoadIcon, SaveIcon } from "@/components/Icons"
 import Timers from "@/components/Timers"
+import { PageName } from "./PageSelector"
 
-export function MainView({ timers, addTimer, copyTimer, delTimer, moveTimer, updateTimer, ShowExporter, ShowImporter }: { timers: TimerData[]; addTimer: () => void; copyTimer: (id: number) => void; delTimer: (id: number) => void; moveTimer: (from: number, to: number) => void; updateTimer: (id: number, update: (timer: TimerData) => void) => void; ShowExporter: tState; ShowImporter: tState }) {
+interface MainViewProps {
+    timers: TimerData[]
+    addTimer: () => void
+    copyTimer: (id: number) => void
+    delTimer: (id: number) => void
+    moveTimer: (from: number, to: number) => void
+    updateTimer: (id: number, update: (timer: TimerData) => void) => void
+    pageShow: State<PageName>
+}
+
+export function MainView({ timers, addTimer, copyTimer, delTimer, moveTimer, updateTimer, pageShow }: MainViewProps) {
     return <div className="timers">
         <Timers timers={timers} copyTimer={copyTimer} delTimer={delTimer} moveTimer={moveTimer} updateTimer={updateTimer} />
-        <fieldset className="buttonsPanel items-center">
-            <legend>-</legend>
+        <div className="buttonsPanel items-center">
             <div className="importExport">
-                <FingerButton onClick={() => ShowImporter.toggle()}><ImportIcon /></FingerButton>
-                <FingerButton onClick={() => ShowExporter.toggle()}><ExportIcon /></FingerButton>
+                <FingerButton onClick={() => pageShow.state = PageName.LoadTimers}><LoadIcon /></FingerButton>
+                <FingerButton onClick={() => pageShow.state = PageName.SaveTimers}><SaveIcon /></FingerButton>
+                <FingerButton onClick={() => pageShow.state = PageName.AllImporter}><ImportIcon /></FingerButton>
+                <FingerButton onClick={() => pageShow.state = PageName.AllExporter}><ExportIcon /></FingerButton>
             </div>
             <FingerButton className="addTimer" title="Add new timer" onClick={addTimer}><AddIcon /></FingerButton>
-        </fieldset>
+        </div>
     </div>
 }
