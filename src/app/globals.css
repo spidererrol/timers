@@ -44,19 +44,13 @@ body {
   font-size: xx-large;
 }
 
-.Exporter {
+.GenericPage {
   padding: 1cm;
   margin: 1cm;
   border: 1px gray dotted;
 }
 
-.Importer {
-  padding: 1cm;
-  margin: 1cm;
-  border: 1px gray dotted;
-}
-
-.Importer textarea, .Exporter textarea {
+.GenericPage textarea {
   width: 90vw;
   min-height: 19em;
 }

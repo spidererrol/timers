@@ -8,14 +8,16 @@ interface GenericPageProps {
     children: ReactNode
     className?: string
     extraButtons?: ReactNode
+    title: string
 }
 
-export default function GenericPage({ Show, children, className, extraButtons = <></> }: GenericPageProps ) {
-    return <div className={className}>
+export default function GenericPage({ title, Show, children, className, extraButtons = <></> }: GenericPageProps) {
+    return <fieldset className={"GenericPage " + (className ?? title.replaceAll(/\s+/g, ""))}>
+        <legend>{title}</legend>
         {children}
         <div className="toolbar">
             {extraButtons}
             <FingerButton onClick={() => Show.toggle()}><CancelIcon /></FingerButton>
         </div>
-    </div>
+    </fieldset>
 }

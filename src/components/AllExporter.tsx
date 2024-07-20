@@ -6,7 +6,7 @@ import GenericPage from "./GenericPage"
 
 export function AllExporter({ timers, Show }: { timers: TimerData[]; Show: tState }) {
     const exportText = JSON.stringify(timers)
-    return <GenericPage className="Exporter" Show={Show}>
+    return <GenericPage title="Exporter" Show={Show}>
         <textarea onFocus={e => e.target.select()}>{exportText}</textarea>
         {
             navigator.clipboard !== undefined && navigator.clipboard.writeText !== undefined

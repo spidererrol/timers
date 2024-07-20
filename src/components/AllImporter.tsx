@@ -7,7 +7,7 @@ import GenericPage from "./GenericPage"
 
 export function AllImporter({ timers, Show, importTimers }: { timers: TimerData[]; Show: tState, importTimers: (json: string) => void }) {
     const [importText, setImportText] = useState(JSON.stringify(timers))
-    return <GenericPage Show={Show} className="Importer" extraButtons={
+    return <GenericPage Show={Show} title="Importer" extraButtons={
         <FingerButton onClick={() => { importTimers(importText); Show.toggle() }}><DoneIcon /></FingerButton>
     }>
         <textarea onFocus={e => e.target.select()} onChange={e => setImportText(e.target.value)}>{importText}</textarea>
