@@ -9,6 +9,7 @@ This I want to achieve in this project:
   * [ ] Or maybe a "default" template timer?
 * [ ] Save/load sets of timers to named group
   * [ ] Auto-save on deleting a timer.
+* [ ] Option to pause between stages (option on stage means auto-pause when stage finished, ignored for last stage)
 
 ## Bonus items
 
