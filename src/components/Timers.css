@@ -214,7 +214,7 @@ hr.padded {
     display: inline-block;
     margin: 3px;
 }
-.input_button {
+.input_with_button {
     display: flex;
     flex-direction: row;
 }

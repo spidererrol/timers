@@ -36,8 +36,15 @@ export default function Home() {
     saveData("timers", newTimers)
   }
 
-  function importTimers(json: string) {
-    importTimersObj((JSON.parse(json) as TimerData[]))
+  function isString(thing: string | any[]): thing is string {
+    if ((thing as string).charAt)
+      return true
+    return false
+  }
+
+  function importTimers(json: string | (TimerData[])) {
+    const obj = isString(json) ? (JSON.parse(json) as TimerData[]) : json
+    importTimersObj(obj)
   }
 
   useEffect(() => {
