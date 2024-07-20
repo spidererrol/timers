@@ -1,7 +1,7 @@
 import { tState } from "@/libs/State"
 import TimerData from "@/objects/TimerData"
-import FingerButton from "./FingerButton"
-import { ClipCopyIcon, DoneIcon } from "./Icons"
+import FingerButton from "@/components/FingerButton"
+import { ClipCopyIcon, DoneIcon } from "@/components/Icons"
 
 export function AllExporter({ timers, Show }: { timers: TimerData[]; Show: tState }) {
     const exportText = JSON.stringify(timers)

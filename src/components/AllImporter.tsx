@@ -1,7 +1,7 @@
 import { tState } from "@/libs/State"
 import TimerData from "@/objects/TimerData"
-import FingerButton from "./FingerButton"
-import { CancelIcon, ClipCopyIcon, ClipPasteIcon, DoneIcon } from "./Icons"
+import FingerButton from "@/components/FingerButton"
+import { CancelIcon, ClipCopyIcon, ClipPasteIcon, DoneIcon } from "@/components/Icons"
 import { useState } from "react"
 
 export function AllImporter({ timers, Show, importTimers }: { timers: TimerData[]; Show: tState, importTimers: (json: string) => void }) {

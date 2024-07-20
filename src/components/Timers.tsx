@@ -5,7 +5,7 @@ import TimerData from "@/objects/TimerData"
 import { updateTimerFunction } from "@/libs/helpers"
 import { DndContext, DragCancelEvent, DragEndEvent, DragStartEvent, PointerSensor, useDroppable, useSensor, useSensors } from '@dnd-kit/core'
 import { State, tState } from "@/libs/State"
-import DropTarget from "./DropTarget"
+import DropTarget from "@/components/DropTarget"
 
 export default function Timers({ timers, copyTimer, delTimer, moveTimer, updateTimer }: { timers: TimerData[], copyTimer: (id: number) => void, delTimer: (id: number) => void, moveTimer: (from: number, to: number) => void, updateTimer: updateTimerFunction }) {
     // const dragging = new tState(useState(false))

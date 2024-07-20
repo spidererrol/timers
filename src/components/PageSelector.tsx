@@ -1,7 +1,7 @@
 import { State, StateDefault } from "@/libs/State"
-import { AllExporter } from "./AllExporter"
-import { AllImporter } from "./AllImporter"
-import { MainView } from "./MainView"
+import { AllExporter } from "@/components/AllExporter"
+import { AllImporter } from "@/components/AllImporter"
+import { MainView } from "@/components/MainView"
 import TimerData from "@/objects/TimerData"
 
 export enum PageName {

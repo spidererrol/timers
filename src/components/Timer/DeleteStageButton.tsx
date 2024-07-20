@@ -1,7 +1,7 @@
 import { updateTimerFunction } from "@/libs/helpers"
 import TimerData from "@/objects/TimerData"
-import FingerButton from "../FingerButton"
-import { DeleteIcon } from "../Icons"
+import FingerButton from "@/components/FingerButton"
+import { DeleteIcon } from "@/components/Icons"
 
 export function DeleteStageButton({ updateTimer, timer, stageno }: { updateTimer: updateTimerFunction; timer: TimerData; stageno: number }) {
     if (timer.stages.length <= 1)

@@ -5,7 +5,7 @@ import { ClockIcon, ColourWheelIcon, SecondsIcon } from "@/components/Icons"
 import { DurationSetter } from "@/components/DurationSetter"
 import { useState } from "react"
 import { tState } from "@/libs/State"
-import { DeleteStageButton } from "./DeleteStageButton"
+import { DeleteStageButton } from "@/components/Timer/DeleteStageButton"
 
 export default function EditStageTimers({ timer, stageno, updateTimer, ColoursMode }: { timer: TimerData; stageno: number; updateTimer: updateTimerFunction, ColoursMode: tState }) {
     const stage = timer.stages[stageno]

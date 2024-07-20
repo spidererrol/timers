@@ -3,7 +3,7 @@ import TimerData from "@/objects/TimerData"
 import FingerButton from "@/components/FingerButton"
 import { ImportIcon, ExportIcon, AddIcon, LoadIcon, SaveIcon } from "@/components/Icons"
 import Timers from "@/components/Timers"
-import { PageName } from "./PageSelector"
+import { PageName } from "@/components/PageSelector"
 
 interface MainViewProps {
     timers: TimerData[]
