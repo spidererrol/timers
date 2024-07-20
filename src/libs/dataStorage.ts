@@ -2,7 +2,7 @@ export function saveData<T>(key: string, data: T) {
     localStorage.setItem(key, JSON.stringify(data))
 }
 
-export function loadData<T,RawT>(key: string, defvalue: T, restore?: (raw: RawT) => T): T {
+export function loadData<T,RawT=T>(key: string, defvalue: T, restore?: (raw: RawT) => T): T {
     const storedData = localStorage.getItem(key)
     if (storedData)
         try {
