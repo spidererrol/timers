@@ -26,7 +26,7 @@ export default function Home() {
   function resetNextId(timerslist?: TimerData[]) {
     if (timerslist === undefined)
       timerslist = timers
-    setNextId(timerslist.map(t => t.id).reduce((p, c) => Math.max(p, c)) + 1)
+    setNextId(timerslist.map(t => t.id).reduce((p, c) => Math.max(p, c), 0) + 1)
   }
 
   function importTimersObj(saveTimers: TimerData[]) {
