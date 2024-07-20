@@ -34,11 +34,11 @@ div.timers {
     flex-direction: row;
     flex-wrap: wrap;
 }
-.importExport {
+.mainButtons {
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
-.importExport > * {
+.mainButtons > * {
     margin: 3px;
 }
 .buttonsPanel {

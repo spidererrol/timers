@@ -19,7 +19,7 @@ export function MainView({ timers, addTimer, copyTimer, delTimer, moveTimer, upd
     return <div className="timers">
         <Timers timers={timers} copyTimer={copyTimer} delTimer={delTimer} moveTimer={moveTimer} updateTimer={updateTimer} />
         <div className="buttonsPanel items-center">
-            <div className="importExport">
+            <div className="mainButtons">
                 <FingerButton onClick={() => pageShow.state = PageName.LoadTimers}><LoadIcon /></FingerButton>
                 <FingerButton onClick={() => pageShow.state = PageName.SaveTimers}><SaveIcon /></FingerButton>
                 <FingerButton onClick={() => pageShow.state = PageName.AllImporter}><ImportIcon /></FingerButton>
