@@ -3,6 +3,7 @@ import { AllExporter } from "@/components/AllExporter"
 import { AllImporter } from "@/components/AllImporter"
 import { MainView } from "@/components/MainView"
 import TimerData from "@/objects/TimerData"
+import SaveTimers from "@/components/SaveTimers"
 
 export enum PageName {
     MainView,
@@ -31,7 +32,9 @@ export default function PageSelector({ pagename, timers, importTimers, moveTimer
             return <AllExporter timers={timers} Show={pagename.tState(PageName.AllExporter)} />
         case PageName.AllImporter:
             return <AllImporter timers={timers} Show={pagename.tState(PageName.AllImporter)} importTimers={importTimers} />
+        case PageName.SaveTimers:
+            return <SaveTimers timers={timers} Show={pagename.tState(PageName.SaveTimers)} />
         default:
-            return <div className="not-implemented" onClick={()=>pagename.setDefault()}><p>Not yet implemented</p></div>
+            return <div className="not-implemented" onClick={() => pagename.setDefault()}><p>Not yet implemented</p></div>
     }
 }

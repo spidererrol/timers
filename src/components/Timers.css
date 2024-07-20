@@ -185,3 +185,36 @@ input,textarea {
     padding: 1cm;
     border: 1px solid red;
 }
+hr.padded {
+    margin-block: 0.5cm;
+}
+.TextWithButtons {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: 0.2em;
+}
+.TextWithButtons p:first-child {
+    flex-grow: 1;
+    margin-inline: 5px; /* Don't know why, but icon overlaps a bit without this */
+    text-align: left;
+}
+.TextIconButton {
+    padding: 0.2em;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+.TextIconButton p {
+    flex-grow: 1;
+    margin-inline: 5px; /* Don't know why, but icon overlaps a bit without this */
+    text-align: left;
+}
+.TextIconButton img {
+    display: inline-block;
+    margin: 3px;
+}
+.input_button {
+    display: flex;
+    flex-direction: row;
+}

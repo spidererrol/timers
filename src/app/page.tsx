@@ -67,7 +67,7 @@ export default function Home() {
   function updateTimer(id: number, update: (timer: TimerData) => void) {
     const newTimers = [...timers.map(t => { if (t.id == id) { update(t); return t } else { return t } })]
     setTimers(newTimers)
-    saveData("timers",newTimers)
+    saveData("timers", newTimers)
   }
 
   /**
@@ -84,7 +84,7 @@ export default function Home() {
       before--
     const newTimers = reId(arrayMoveImmutable(timers, id, before))
     setTimers(newTimers)
-    saveData("timers",newTimers)
+    saveData("timers", newTimers)
   }
 
   return (
