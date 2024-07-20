@@ -2,7 +2,7 @@ import { tState } from "@/libs/State"
 import TimerData from "@/objects/TimerData"
 import FingerButton from "@/components/FingerButton"
 import { ClipCopyIcon, DoneIcon } from "@/components/Icons"
-import GenericPage from "./GenericPage"
+import GenericPage from "@/components/GenericPage"
 
 export function AllExporter({ timers, Show }: { timers: TimerData[]; Show: tState }) {
     const exportText = JSON.stringify(timers)

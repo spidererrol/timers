@@ -1,9 +1,9 @@
 import { tState } from "@/libs/State"
 import TimerData from "@/objects/TimerData"
 import FingerButton from "@/components/FingerButton"
-import { CancelIcon, ClipCopyIcon, ClipPasteIcon, DoneIcon } from "@/components/Icons"
+import { ClipPasteIcon, DoneIcon } from "@/components/Icons"
 import { useState } from "react"
-import GenericPage from "./GenericPage"
+import GenericPage from "@/components/GenericPage"
 
 export function AllImporter({ timers, Show, importTimers }: { timers: TimerData[]; Show: tState, importTimers: (json: string) => void }) {
     const [importText, setImportText] = useState(JSON.stringify(timers))

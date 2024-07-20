@@ -1,7 +1,7 @@
 import { tState } from "@/libs/State"
 import { ReactNode } from "react"
-import FingerButton from "./FingerButton"
-import { CancelIcon } from "./Icons"
+import FingerButton from "@/components/FingerButton"
+import { CancelIcon } from "@/components/Icons"
 
 interface GenericPageProps {
     Show: tState
