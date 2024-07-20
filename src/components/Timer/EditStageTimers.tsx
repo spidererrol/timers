@@ -24,7 +24,7 @@ export default function EditStageTimers({ timer, stageno, updateTimer, ColoursMo
                 <DeleteStageButton updateTimer={updateTimer} timer={timer} stageno={stageno} />
             </div>
             </div>
-            <div>Pause?:<input type="checkbox" checked={stage.pause} onChange={e=>updateTimer(timer.id,t=>t.stages[stageno].pause = e.target.checked)} /></div>
+            <div className="pause_toggle">Pause?:<input type="checkbox" checked={stage.pause} onChange={e=>updateTimer(timer.id,t=>t.stages[stageno].pause = e.target.checked)} /></div>
         </div>
     )
 }

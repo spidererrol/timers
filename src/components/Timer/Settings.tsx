@@ -41,7 +41,9 @@ export default function TimerSettings({ timer, copyTimer, delTimer, updateTimer:
             <VEColour name="Default" colour={timer.defaultcolor} updateColour={uc => updateTimer(timer.id, t => uc(timer.defaultcolor))} />
             <VEColour name="Finished" colour={timer.finishedcolor} updateColour={uc => updateTimer(timer.id, t => uc(timer.finishedcolor))} />
         </table>
-        <EditStages timer={timer} updateTimer={updateTimer} />
+        <div className="editstages">
+            <EditStages timer={timer} updateTimer={updateTimer} />
+        </div>
         <FingerButton className="short wide" title="Add Stage" onClick={() => updateTimer(timer.id, t => t.addStage())}><AddIcon /><ClockIcon /></FingerButton>
         <br />
         <DoneButton updateTimer={updateTimer} timer={timer} />

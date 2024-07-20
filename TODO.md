@@ -8,7 +8,6 @@ This I want to achieve in this project:
 * [ ] Adjustable default length for timers?
   * [ ] Or maybe a "default" template timer?
 * [ ] Auto-save on deleting a timer.
-* [ ] Option to pause between stages (option on stage means auto-pause when stage finished, ignored for last stage)
 
 ## Bonus items
 
@@ -40,6 +39,7 @@ This I want to achieve in this project:
 * [X] auto order colour steps
 * [X] copy timer
 * [X] Save/load sets of timers to named group
+* [X] Option to pause between stages (option on stage means auto-pause when stage finished, ignored for last stage)
 
 ---
 END OF FILE

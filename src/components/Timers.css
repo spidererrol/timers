@@ -228,3 +228,7 @@ hr.padded {
 .Play .mdi.icon {
     background: green;
 }
+.editstage:last-child .pause_toggle {
+    display: none;
+    filter: grayscale(1);
+}
