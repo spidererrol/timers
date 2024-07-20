@@ -1,4 +1,4 @@
-import { State, StateDefault, tState } from "@/libs/State"
+import { State } from "@/libs/State"
 import TimerData from "@/objects/TimerData"
 import FingerButton from "@/components/FingerButton"
 import { ImportIcon, ExportIcon, AddIcon, LoadIcon, SaveIcon } from "@/components/Icons"

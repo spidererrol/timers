@@ -1,14 +1,8 @@
 'use client'
 
-import Timers from "@/components/Timers"
 import React, { useEffect, useState } from "react"
 import TimerData from "@/objects/TimerData"
-import { AddIcon, ExportIcon, ImportIcon } from "@/components/Icons"
-import FingerButton from "@/components/FingerButton"
-import { StateDefault, tState } from "@/libs/State"
-import { MainView } from "@/components/MainView"
-import { AllExporter } from "@/components/AllExporter"
-import { AllImporter } from "@/components/AllImporter"
+import { StateDefault } from "@/libs/State"
 import { arrayMoveImmutable } from "array-move"
 import PageSelector, { PageName } from "@/components/PageSelector"
 
@@ -16,7 +10,7 @@ export default function Home() {
   const [nextId, setNextId] = useState(1)
   const [timers, setTimers] = useState([] as TimerData[]) // Immer didn't work for deeper updates.
   const [tick, setTick] = useState(() => new Date())
-  const pagename = new StateDefault(useState(PageName.MainView),PageName.MainView)
+  const pagename = new StateDefault(useState(PageName.MainView), PageName.MainView)
 
   useEffect(() => {
     const ticker = setInterval(() => {

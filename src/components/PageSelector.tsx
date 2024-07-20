@@ -1,4 +1,4 @@
-import { State, StateDefault } from "@/libs/State"
+import { StateDefault } from "@/libs/State"
 import { AllExporter } from "@/components/AllExporter"
 import { AllImporter } from "@/components/AllImporter"
 import { MainView } from "@/components/MainView"
