@@ -211,6 +211,7 @@ export enum AlarmState {
 
 export class TimerStageData {
     duration: timerduration
+    pause: boolean = false
     private _colors: TimerStageColorData[] = []
     public get colors(): TimerStageColorData[] {
         return this._colors // Don't sort here, it will confuse which item(s) I am editing!
@@ -224,6 +225,7 @@ export class TimerStageData {
         const t = new TimerStageData(timerduration.restore(o.duration))
         t.colors = o._colors.map(oc => TimerStageColorData.restore(oc))
         t.alarm = o.alarm
+        t.pause = o.pause ?? false
         return t
     }
 
@@ -300,7 +302,7 @@ export default class TimerData {
         if (this.name.match(/\d$/)) {
             newTimer.name = this.name.replace(/(\d+)$/, (_s, a) => "" + (Number.parseInt(a) + 1))
         } else {
-            newTimer.name = this.name + " 2";
+            newTimer.name = this.name + " 2"
         }
         return newTimer
     }
@@ -317,9 +319,12 @@ export default class TimerData {
 
     tick() {
         if (this._finished() && this._running()) {
-            if (this.currentstage.alarm == AlarmState.Pending)
+            if (this.currentstage.alarm == AlarmState.Pending) {
                 this.currentstage.alarm = AlarmState.Active
+            }
             if (this._currentstage < (this.stages.length - 1)) {
+                if (this.currentstage.pause && this._pausetime === undefined)
+                    this._pausetime = Date.now()
                 this._currentstage++
                 this.currentstage.alarm = AlarmState.Pending
                 // this._starttime = Date.now() // I partly think it would be nicer to track
@@ -442,6 +447,7 @@ export default class TimerData {
         this._starttime = Date.now()
         this._pausetime = undefined
         this._finishedflag = false
+        this._currentstage = 0
         this.resetAlarms()
     }
 

@@ -106,6 +106,13 @@ button {
     padding-block-end: 0.5em;
     border-block-end: 1px solid blue;
 }
+.editstage {
+    flex-direction: column;
+}
+.editstage .parts {
+    display: flex;
+    flex-direction: row;
+}
 .editstage, .editcolours {
     border-block-end-width: 5px;
     border-block-end-style: double;
@@ -217,4 +224,7 @@ hr.padded {
 .input_with_button {
     display: flex;
     flex-direction: row;
+}
+.Play .mdi.icon {
+    background: green;
 }

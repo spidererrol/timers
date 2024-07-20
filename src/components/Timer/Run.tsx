@@ -16,7 +16,7 @@ export default function TimerRun({ timer, updateTimer }: { timer: TimerData; upd
             <span className={"nexttime"}>{timer.nextstage !== undefined ? timer.nextstage.duration.toDisplay() : <></>}</span>
         </p>
         <div className="controls">
-            {timer.paused || !timer.started ? (<FingerButton onClick={() => updateTimer(timer.id, t => { if (t.paused) { t.resume() } else { t.start() } })}><PlayIcon /></FingerButton>) : <></>}
+            {timer.paused || !timer.started ? (<FingerButton className="Play" onClick={() => updateTimer(timer.id, t => { if (t.paused) { t.resume() } else { t.start() } })}><PlayIcon /></FingerButton>) : <></>}
             {timer.started && !timer.paused && !timer.finished ? (<FingerButton onClick={() => updateTimer(timer.id, t => { t.pause() })}><PauseIcon /></FingerButton>) : <></>}
             {timer.started || timer.finished ? <FingerButton onClick={() => updateTimer(timer.id, t => { t.stop() })}><StopIcon /></FingerButton> : <></>}
             {timer.started || timer.paused ? <FingerButton onClick={() => updateTimer(timer.id, t => { t.reset() })}><RestartIcon /></FingerButton> : <></>}

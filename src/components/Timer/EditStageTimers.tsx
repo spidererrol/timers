@@ -12,6 +12,7 @@ export default function EditStageTimers({ timer, stageno, updateTimer, ColoursMo
     const SecondsMode = new tState(useState(false))
     return (
         <div className="editstage">
+            <div className="parts">
             <div className="timerstage">{stageno + 1}</div>
             <DurationSetter useSeconds={SecondsMode} duration={stage.duration} updateDuration={ud => updateTimer(timer.id, t => { ud(t.stages[stageno].duration) })} />
             <div className="controls">
@@ -22,6 +23,8 @@ export default function EditStageTimers({ timer, stageno, updateTimer, ColoursMo
                 }
                 <DeleteStageButton updateTimer={updateTimer} timer={timer} stageno={stageno} />
             </div>
+            </div>
+            <div>Pause?:<input type="checkbox" checked={stage.pause} onChange={e=>updateTimer(timer.id,t=>t.stages[stageno].pause = e.target.checked)} /></div>
         </div>
     )
 }
