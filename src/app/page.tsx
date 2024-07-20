@@ -6,6 +6,7 @@ import { StateDefault } from "@/libs/State"
 import { arrayMoveImmutable } from "array-move"
 import PageSelector, { PageName } from "@/components/PageSelector"
 import { loadData, saveData } from "@/libs/dataStorage"
+import { TimersSavesCollection } from "@/objects/DataTypes"
 
 export default function Home() {
   const [nextId, setNextId] = useState(1)
@@ -68,6 +69,32 @@ export default function Home() {
   }
 
   function delTimer(id: number) {
+    const toDel = timers.find(t => t.id == id)
+    if (toDel !== undefined) {
+      const saveSlots = loadData<TimersSavesCollection>("savedTimers", {})
+      const basename = "AutoSave (delete " + toDel.name + ")"
+      let name = basename
+      let i = 1
+      while (saveSlots[name] !== undefined) {
+        name = basename + " " + i++
+      }
+      saveSlots[name] = {
+        name: name,
+        modified: Date.now(),
+        autosave: true,
+        timers
+      }
+      const saveNames = Object.keys(saveSlots).filter(sn => saveSlots[sn].autosave)
+      let countas = saveNames.length
+      const max_autosaves = 10
+      if (countas > max_autosaves) {
+        const toDel = saveNames.toSorted((a, b) => saveSlots[b].modified - saveSlots[a].modified).slice(max_autosaves)
+        for (const savename of toDel) {
+          delete saveSlots[savename]
+        }
+      }
+      saveData("savedTimers", saveSlots)
+    }
     setTimers([...timers.filter(t => t.id != id)])
   }
 
