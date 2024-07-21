@@ -5,8 +5,6 @@ This I want to achieve in this project:
 * [ ] import/export timers
   * [ ] one
   * [X] all
-* [ ] Adjustable default length for timers?
-  * [ ] Or maybe a "default" template timer?
 
 ## Bonus items
 
@@ -45,6 +43,8 @@ This I want to achieve in this project:
   * Maintain positions in list but visually move to earlier area.
   * Need to restore/mirror/indicate normal position during drag & drop.
   * [X] Allow drag to minimse/restore?
+* [ ] ~~Adjustable default length for timers?~~ (Don't care enough & copying suffices)
+  * [ ] ~~Or maybe a "default" template timer?~~ (Already effectivly available via copying of timers)
 
 ---
 END OF FILE
