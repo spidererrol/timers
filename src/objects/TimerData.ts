@@ -267,6 +267,7 @@ export default class TimerData {
     defaultcolor: htmlcolour = new htmlcolour(0, 0, 0)
     finishedcolor: htmlcolour = new htmlcolour(0, 100, 50)
     protected _finishedflag: boolean = false
+    minimised: boolean = false
 
     static restore(o: TimerData): TimerData {
         const t = new TimerData(o.id)
@@ -275,6 +276,7 @@ export default class TimerData {
         t.stages = o.stages.map(os => TimerStageData.restore(os))
         t.defaultcolor = htmlcolour.restore(o.defaultcolor)
         t.finishedcolor = htmlcolour.restore(o.finishedcolor)
+        t.minimised = o.minimised ?? false
 
         // These will restore the active state of the timer:
         t._starttime = o._starttime

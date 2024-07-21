@@ -1,8 +1,14 @@
 import { useDroppable } from "@dnd-kit/core"
 
-export default function DropTarget({ position, dragging }: { position: number, dragging: boolean }) {
+interface DropTargetProps {
+    position: number
+    dragging: boolean
+    prefix: string
+}
+
+export default function DropTarget({ position, dragging, prefix }: DropTargetProps) {
     const { isOver, setNodeRef } = useDroppable({
-        id: "drop:" + position,
+        id: prefix + ":" + position,
     })
     const classes = "DropTarget" + (isOver ? " hover" : "")
     if (dragging)

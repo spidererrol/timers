@@ -86,7 +86,7 @@ div.timers {
 button {
     border: outset 2px darkgray;
 }
-.timeleft {
+.Timer .timeleft {
     font-size: xxx-large;
 }
 .nexttime {
@@ -231,4 +231,34 @@ hr.padded {
 .editstage:last-child .pause_toggle {
     display: none;
     filter: grayscale(1);
+}
+.outer {
+    display: flex;
+    flex-direction: column;
+}
+.minimised_area {
+    display: flex;
+    flex-direction: row;
+    margin-top: 0.5cm;
+}
+.TimerMin {
+    display: none;
+    margin: 0.5em;
+    font-size: smaller;
+}
+
+.TimerMin .timeleft {
+    font-size: larger;
+}
+
+.TimerMin.minimised, .TimerMin.NoDrop {
+    display: block;
+}
+
+.Timer.minimised {
+    display: none;
+}
+
+.Timer.minimised.NoDrop {
+    display: block;
 }

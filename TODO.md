@@ -7,6 +7,11 @@ This I want to achieve in this project:
   * [X] all
 * [ ] Adjustable default length for timers?
   * [ ] Or maybe a "default" template timer?
+* [X] Minimise timers - display just name & remaining time if running.
+  * [ ] Auto restore on alarm
+  * Maintain positions in list but visually move to earlier area.
+  * Need to restore/mirror/indicate normal position during drag & drop.
+  * [X] Allow drag to minimse/restore?
 
 ## Bonus items
 

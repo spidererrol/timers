@@ -117,3 +117,11 @@ export function ClipPasteIcon({ alt = "Paste from Clipboard", title }: IconParam
 export function CopyIcon({ alt = "Copy", title }: IconParams) {
     return <MdiFont item="content_copy" alt={alt} title={title} />
 }
+
+export function MinimiseIcon({alt="Minimise",title }:IconParams) {
+    return <MdiFont item="minimize" alt={alt} title={title} />
+}
+
+export function RestoreIcon({alt="Restore",title }:IconParams) {
+    return <MdiFont item="filter_none" alt={alt} title={title} />
+}
