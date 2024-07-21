@@ -13,7 +13,9 @@ export default function TimerRun({ timer, updateTimer }: TimerRunProps) {
         <div className={"TimerRun" + (timer.finished ? " finished" : "") + (timer.minimised ? " minimised" : "")} style={{ "background": timer.color.toString() }}>
             <div className="toolbar">
                 <FingerButton className="editTimer" title="Edit this Timer" onClick={() => updateTimer(timer.id, t => { t.configured = false })}><EditIcon /></FingerButton>
-                <FingerButton onClick={() => updateTimer(timer.id, t => t.minimised = true)}><MinimiseIcon /></FingerButton>
+                {timer.alarmActive() ? <></> :
+                    <FingerButton onClick={() => updateTimer(timer.id, t => t.minimised = true)}><MinimiseIcon /></FingerButton>
+                }
             </div>
             <p>
                 {timer.stages.length > 1 ? <span className="timerstage">{timer._currentstage + 1}<br /><span className="total">{timer.stages.length}</span></span> : <></>}

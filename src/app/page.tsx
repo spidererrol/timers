@@ -110,16 +110,18 @@ export default function Home() {
    * @param id Id of timer to move
    * @param before Move timer to be after the timer with this id
    */
-  function moveTimer(id: number, before: number, update?:(t:TimerData)=>void) {
+  function moveTimer(id: number, before: number, update?: (t: TimerData) => void) {
     // if (before <= id) ok
     // if (before == id) ok
     // if (before == id + 1) ok
     if (before >= (id + 2))
       before--
-    const newTimers = reId(arrayMoveImmutable(timers.map(t=>{if (update !== undefined && t.id == id) { update(t) }; return t}), id, before))
+    const newTimers = reId(arrayMoveImmutable(timers.map(t => { if (update !== undefined && t.id == id) { update(t) }; return t }), id, before))
     setTimers(newTimers)
     saveData("timers", newTimers)
   }
+
+  timers.forEach(rt => { if (rt.minimised && rt.alarmActive()) updateTimer(rt.id, nt => nt.minimised = false) })
 
   return (
     <main className="flex flex-col justify-between items-center">
