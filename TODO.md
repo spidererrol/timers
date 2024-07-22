@@ -8,9 +8,7 @@ This I want to achieve in this project:
 
 ## Bonus items
 
-* [ ] Real time alarms?
 * [ ] Allow colour times to be edited as seconds?
-* [ ] Remove tailwindcss. I barely use it so just setup the very few classes I want manually.
 
 ## DONE
 
@@ -45,6 +43,8 @@ This I want to achieve in this project:
   * [X] Allow drag to minimse/restore?
 * [ ] ~~Adjustable default length for timers?~~ (Don't care enough & copying suffices)
   * [ ] ~~Or maybe a "default" template timer?~~ (Already effectivly available via copying of timers)
+* [ ] ~~Remove tailwindcss.~~ It provides more defaults than I realised and really doesn't hurt.
+* [ ] ~~Real time alarms?~~ I already have real time alarms elsewhere, no need to duplicate here.
 
 ---
 END OF FILE
