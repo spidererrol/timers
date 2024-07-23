@@ -262,3 +262,16 @@ hr.padded {
 .Timer.minimised.NoDrop {
     display: block;
 }
+
+.options {
+    display: flex;
+}
+.options .LabeledCheckbox {
+    margin-inline: 0.5em;
+}
+.options .LabeledCheckbox:first-child {
+    margin-inline-start: 0;
+}
+.options .LabeledCheckbox:last-child {
+    margin-inline-end: 0;
+}

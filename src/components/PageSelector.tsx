@@ -5,6 +5,7 @@ import { MainView } from "@/components/MainView"
 import TimerData from "@/objects/TimerData"
 import SaveTimers from "@/components/SaveTimers"
 import LoadTimers from "./LoadTimers"
+import { importExportData, importTimersFunc } from "@/objects/DataTypes"
 
 export enum PageName {
     MainView,
@@ -17,7 +18,7 @@ export enum PageName {
 interface PageProps {
     pagename: StateDefault<PageName>
     timers: TimerData[]
-    importTimers: (json: string|TimerData[]) => void
+    importTimers: importTimersFunc
     moveTimer: (from: number, to: number) => void
     addTimer: () => void
     copyTimer: (id: number) => void
@@ -35,9 +36,9 @@ export default function PageSelector({ pagename, timers, importTimers, moveTimer
             return <AllImporter timers={timers} Show={pagename.tState(PageName.AllImporter)} importTimers={importTimers} />
         case PageName.SaveTimers:
             return <SaveTimers timers={timers} Show={pagename.tState(PageName.SaveTimers)} />
-            case PageName.LoadTimers:
-                return <LoadTimers timers={timers} Show={pagename.tState(PageName.LoadTimers)} importTimers={importTimers} />
-            default:
+        case PageName.LoadTimers:
+            return <LoadTimers timers={timers} Show={pagename.tState(PageName.LoadTimers)} importTimers={importTimers} />
+        default:
             return <div className="not-implemented" onClick={() => pagename.setDefault()}><p>Not yet implemented</p></div>
     }
 }

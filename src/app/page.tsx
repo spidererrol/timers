@@ -6,7 +6,7 @@ import { StateDefault } from "@/libs/State"
 import { arrayMoveImmutable } from "array-move"
 import PageSelector, { PageName } from "@/components/PageSelector"
 import { loadData, saveData } from "@/libs/dataStorage"
-import { TimersSavesCollection } from "@/objects/DataTypes"
+import { importExportData, TimersSavesCollection } from "@/objects/DataTypes"
 
 export default function Home() {
   const [nextId, setNextId] = useState(1)
@@ -37,15 +37,25 @@ export default function Home() {
     saveData("timers", newTimers)
   }
 
-  function isString(thing: string | any[]): thing is string {
+  function isString(thing: string | any): thing is string {
     if ((thing as string).charAt)
       return true
     return false
   }
 
-  function importTimers(json: string | (TimerData[])) {
-    const obj = isString(json) ? (JSON.parse(json) as TimerData[]) : json
-    importTimersObj(obj)
+  function importTimers(json: string | importExportData, replace: boolean) {
+    const obj = isString(json) ? (JSON.parse(json) as importExportData) : json
+
+    if (obj.timers !== undefined) {
+      if (!replace)
+        obj.timers = [...timers, ...obj.timers]
+      importTimersObj(obj.timers)
+    }
+    if (obj.saves !== undefined) {
+      if (!replace)
+        obj.saves = { ...obj.saves, ...loadData("savedTimers", {} as TimersSavesCollection) }
+      saveData("savedTimers", obj.saves)
+    }
   }
 
   useEffect(() => {

@@ -9,3 +9,9 @@ export interface TimersSaveData {
 
 export type TimersSavesCollection = { [key: string]: TimersSaveData }
 
+export interface importExportData {
+    timers?: TimerData[],
+    saves?: TimersSavesCollection
+}
+
+export type importTimersFunc = (json: string | importExportData, replace: boolean) => void

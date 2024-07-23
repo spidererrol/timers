@@ -1,6 +1,6 @@
 import { loadData, saveData } from "@/libs/dataStorage"
 import { State, tState } from "@/libs/State"
-import { TimersSaveData, TimersSavesCollection } from "@/objects/DataTypes"
+import { importExportData, importTimersFunc, TimersSaveData, TimersSavesCollection } from "@/objects/DataTypes"
 import TimerData from "@/objects/TimerData"
 import GenericPage from "@/components/GenericPage"
 import { ReactNode, useState } from "react"
@@ -8,11 +8,12 @@ import FingerButton from "@/components/FingerButton"
 import { DeleteIcon, LoadIcon, SaveIcon } from "@/components/Icons"
 import TextWithButtons from "@/components/TextWithButtons"
 import { myDateTimeFormatter } from "@/libs/myDateTimerFormatter"
+import { Checkbox } from "./Checkbox"
 
 export interface SaveTimersProps {
     timers: TimerData[]
     Show: tState
-    importTimers: (saveTimers: string | TimerData[]) => void
+    importTimers: importTimersFunc
 }
 
 interface SaveEntryProps {
@@ -31,9 +32,10 @@ function SaveEntry({ saveName, loadFrom, deleteSave, saveInfo }: SaveEntryProps)
 export default function LoadTimers({ Show, importTimers }: SaveTimersProps) {
     const saveSlots = loadData<TimersSavesCollection>("savedTimers", {})
     const existing: ReactNode[] = []
+    const replace = new tState(useState(true))
 
     function loadFrom(name: string) {
-        importTimers(saveSlots[name]?.timers ?? {})
+        importTimers(saveSlots[name] ?? {}, replace.state)
     }
 
     function deleteSave(name: string) {
@@ -46,6 +48,7 @@ export default function LoadTimers({ Show, importTimers }: SaveTimersProps) {
         existing.push(<SaveEntry key={saveName} saveName={saveName} saveInfo={saveInfo} loadFrom={(name) => { loadFrom(name); Show.state = false }} deleteSave={deleteSave} />)
     }
     return <GenericPage title="Load Timers" Show={Show}>
+        <Checkbox label="Replace current?" checked={replace} />
         {existing.length > 0 ? existing : <p>No existing saves</p>}
         <hr className="padded" />
     </GenericPage>
