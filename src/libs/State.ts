@@ -15,6 +15,15 @@ export class State<T> {
         this.setState = setState
     }
 }
+
+function resolve(input: boolean | ((prev: boolean) => boolean), prev: boolean): boolean {
+    if (typeof input === "function") {
+        return input(prev)
+    } else {
+        return input
+    }
+}
+
 export class StateDefault<T> extends State<T> {
     protected _default: T
     public static upgrade<T>(old: State<T>, defaultValue: T): StateDefault<T> {
@@ -28,18 +37,24 @@ export class StateDefault<T> extends State<T> {
         this.setState(this._default)
     }
     public tState(boolmode: T): tState {
-        function resolve(input: boolean | ((prev: boolean) => boolean), prev: boolean): boolean {
-            if (typeof input === "function") {
-                return input(prev)
-            } else {
-                return input
-            }
-        }
         return new tState([this.state == boolmode, (bool: SetStateAction<boolean>) => { resolve(bool, this.state == boolmode) ? this.setState(boolmode) : this.setDefault() }])
     }
 }
 export class tState extends State<boolean> {
     public toggle() {
         this.state = !this.state
+    }
+}
+
+export class Object_tStates<T> extends State<{ [Property in keyof T]: boolean }> {
+    tState(key: keyof T): tState {
+        return new tState([
+            this.state[key],
+            (bool: SetStateAction<boolean>) => {
+                const newState = { ...this.state }
+                newState[key] = resolve(bool, this.state[key])
+                this.setState(newState)
+            }
+        ])
     }
 }

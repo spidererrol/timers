@@ -2,10 +2,6 @@
 
 This I want to achieve in this project:
 
-* [ ] import/export timers
-  * [ ] one
-  * [X] all
-
 ## Bonus items
 
 * [ ] Allow colour times to be edited as seconds?
@@ -45,6 +41,9 @@ This I want to achieve in this project:
   * [ ] ~~Or maybe a "default" template timer?~~ (Already effectivly available via copying of timers)
 * [ ] ~~Remove tailwindcss.~~ It provides more defaults than I realised and really doesn't hurt.
 * [ ] ~~Real time alarms?~~ I already have real time alarms elsewhere, no need to duplicate here.
+* [X] import/export timers
+  * [X] one
+  * [X] all
 
 ---
 END OF FILE
