@@ -1,5 +1,5 @@
 import FingerButton from "@/components/FingerButton"
-import { EditIcon, PlayIcon, PauseIcon, StopIcon, RestartIcon, AlarmMuteIcon, MinimiseIcon } from "@/components/Icons"
+import { EditIcon, PlayIcon, PauseIcon, StopIcon, RestartIcon, AlarmMuteIcon, MinimiseIcon, AlarmMuteIcon2 } from "@/components/Icons"
 import { updateTimerFunction } from "@/libs/helpers"
 import TimerData from "@/objects/TimerData"
 
@@ -27,7 +27,7 @@ export default function TimerRun({ timer, updateTimer }: TimerRunProps) {
                 {timer.started && !timer.paused && !timer.finished ? (<FingerButton onClick={() => updateTimer(timer.id, t => { t.pause() })}><PauseIcon /></FingerButton>) : <></>}
                 {timer.started || timer.finished ? <FingerButton onClick={() => updateTimer(timer.id, t => { t.stop() })}><StopIcon /></FingerButton> : <></>}
                 {timer.started || timer.paused ? <FingerButton onClick={() => updateTimer(timer.id, t => { t.reset() })}><RestartIcon /></FingerButton> : <></>}
-                {timer.alarmActive() ? <FingerButton onClick={() => { timer.stopAlarms() }}><AlarmMuteIcon /></FingerButton> : <></>}
+                {timer.alarmActive() ? <FingerButton onClick={() => { timer.stopAlarms() }}>{(new Date()).getSeconds() % 2 == 0 ? <AlarmMuteIcon /> : <AlarmMuteIcon2 />}</FingerButton> : <></>}
             </div>
             {timer.alarmActive() ? <audio src="/alarm.wav" autoPlay={true} onEnded={() => { timer.stopAlarms() }} /> : <></>}
         </div>

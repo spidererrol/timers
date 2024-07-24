@@ -105,6 +105,9 @@ export function RestartIcon({ alt = "Restart", title }: IconParams) {
 export function AlarmMuteIcon({ alt = "Alarm Mute", title }: IconParams) {
     return <MdiFont item="notifications_active" alt={alt} title={title} />
 }
+export function AlarmMuteIcon2({ alt = "Alarm Mute", title }: IconParams) {
+    return <MdiFont item="notifications" alt={alt} title={title} />
+}
 
 export function ClipCopyIcon({ alt = "Copy to Clipboard", title }: IconParams) {
     return <MdiFont item="content_paste_go" alt={alt} title={title} />
