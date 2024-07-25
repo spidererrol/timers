@@ -4,8 +4,6 @@ This I want to achieve in this project:
 
 ## Bonus items
 
-* [ ] Allow colour times to be edited as seconds?
-
 ## DONE
 
 * [X] Flexible number of timers (add & remove timers)
@@ -44,6 +42,7 @@ This I want to achieve in this project:
 * [X] import/export timers
   * [X] one
   * [X] all
+* [X] Allow colour times to be edited as seconds?
 
 ---
 END OF FILE

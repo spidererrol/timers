@@ -1,10 +1,17 @@
 import { tState } from "@/libs/State"
 import { timerduration } from "@/objects/TimerData"
-import { DurationSetterHMS } from "@/components/DurationSetter"
+import { DurationSetter } from "@/components/DurationSetter"
 
-export function ViewEditDuration({ duration, updateDuration, edit }: { duration: timerduration; updateDuration: (update: (d: timerduration) => void) => void; edit: tState} ) {
+interface ViewEditDurationProps {
+    duration: timerduration
+    updateDuration: (update: (d: timerduration) => void) => void
+    edit: tState
+    useSeconds: tState
+}
+
+export function ViewEditDuration({ duration, updateDuration, edit, useSeconds }: ViewEditDurationProps) {
     return <>{edit.state
-        ? <DurationSetterHMS duration={duration} updateDuration={updateDuration} />
+        ? <DurationSetter duration={duration} updateDuration={updateDuration} useSeconds={useSeconds} />
         : <span onClick={() => edit.toggle()}>{duration.toDisplay()}</span>}
     </>
 }

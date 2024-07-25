@@ -1,8 +1,8 @@
-import { ReactNode } from "react"
+import { MouseEventHandler, ReactNode } from "react"
 
 export interface FingerButtonProps {
     className?: string
-    onClick?: () => void
+    onClick?: MouseEventHandler<HTMLButtonElement>
     title?: string
     children: ReactNode
 }
