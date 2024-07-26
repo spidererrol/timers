@@ -2,6 +2,10 @@
 
 This I want to achieve in this project:
 
+* [ ] Possible bug, can only clone a timer once? Can clone the previously cloned timer.
+* [ ] Adjust minimum timer size larger to reduce reshuffling of timer positions.
+* [ ] On import and clone, stop timers. But not on initial load (refresh page or brower crash should resume timers).
+
 ## Bonus items
 
 ## DONE
