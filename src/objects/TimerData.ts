@@ -298,11 +298,22 @@ export default class TimerData {
     /**
      * Duplicate this timer to a new copy.
      */
-    public clone(newId: number): TimerData {
+    public clone(newId: number, nameExists?: (name: string) => boolean): TimerData {
         const newTimer = TimerData.restore(this)
         newTimer.id = newId
         if (this.name.match(/\d$/)) {
             newTimer.name = this.name.replace(/(\d+)$/, (_s, a) => "" + (Number.parseInt(a) + 1))
+            if (nameExists !== undefined) {
+                const match = this.name.match(/(\d+)$/)
+                if (match !== null) {
+                    const basename = this.name.replace(/\d+$/, "")
+                    let i = Number.parseInt(match[1])
+                    while (nameExists(basename + i)) {
+                        i++
+                    }
+                    newTimer.name = basename + i
+                }
+            }
         } else {
             newTimer.name = this.name + " 2"
         }

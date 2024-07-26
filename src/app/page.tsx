@@ -74,7 +74,7 @@ export default function Home() {
 
   function copyTimer(id: number) {
     const copyFrom = timers.find(t => t.id == id) as TimerData
-    setTimers([...timers, copyFrom.clone(nextId)])
+    setTimers([...timers, copyFrom.clone(nextId, name => timers.find(t => t.name == name) != null)])
     setNextId(n => n + 1)
   }
 
