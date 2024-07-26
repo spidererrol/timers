@@ -142,6 +142,9 @@ button {
     display: flex;
     flex-direction: column;
 }
+.TimerRun {
+    min-width: 4cm;
+}
 .TimerRun .controls {
     display: flex;
 }
