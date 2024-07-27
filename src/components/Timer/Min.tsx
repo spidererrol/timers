@@ -24,7 +24,11 @@ export default function TimerMin({ timer, copyTimer, delTimer, updateTimer, drag
     })
 
     return <div className={classes} ref={setNodeRef} style={style} {...listeners} {...attributes}>
-        <FingerButton onClick={() => updateTimer(timer.id, t => t.minimised = false)}>{timer.name} <span className={"timeleft"}>{timer.current.toDisplay()}</span> <RestoreIcon /></FingerButton>
+        <FingerButton onClick={() => updateTimer(timer.id, t => t.minimised = false)}>
+            <span className="timername">{timer.name}</span>
+            <span className={"timeleft"}>{timer.current.toDisplay()}</span>
+            <RestoreIcon />
+        </FingerButton>
     </div>
     // I don't need this, the copy in TimerRun is enough:
     // {timer.alarmActive() ? <audio src="/alarm.wav" autoPlay={true} onEnded={() => { timer.stopAlarms() }} /> : <></>}

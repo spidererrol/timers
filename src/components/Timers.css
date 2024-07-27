@@ -248,10 +248,21 @@ hr.padded {
     display: none;
     margin: 0.5em;
     font-size: smaller;
+    color: hsl(0 0% 50%);
+}
+
+.TimerMin .timername {
+    margin-inline-end: 0.5em;
+    color: hsl(0 0% 100%);
 }
 
 .TimerMin .timeleft {
+    margin-inline-end: 0.5em;
     font-size: larger;
+}
+
+.TimerMin .icon {
+    color: hsl(0 0% 20%);
 }
 
 .TimerMin.minimised, .TimerMin.NoDrop {
