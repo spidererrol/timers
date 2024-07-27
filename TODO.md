@@ -2,8 +2,6 @@
 
 This I want to achieve in this project:
 
-* [ ] On import and clone, stop timers. But not on initial load (refresh page or brower crash should resume timers).
-
 ## Bonus items
 
 ## DONE
@@ -48,6 +46,7 @@ This I want to achieve in this project:
 * [X] ~~Possible bug, can only clone a timer once? Can clone the previously cloned timer.~~
       Remembered wrong - was actually just that copying a "1" always produced "2" even if "2" exists.
 * [X] Adjust minimum timer size larger to reduce reshuffling of timer positions.
+* [X] On import and clone, stop timers. But not on initial load (refresh page or brower crash should resume timers).
 
 ---
 END OF FILE

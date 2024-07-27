@@ -30,8 +30,8 @@ export default function Home() {
     setNextId(timerslist.map(t => t.id).reduce((p, c) => Math.max(p, c), 0) + 1)
   }
 
-  function importTimersObj(saveTimers: TimerData[]) {
-    const newTimers = reId(saveTimers.map(o => TimerData.restore(o)))
+  function importTimersObj(saveTimers: TimerData[], resume?: boolean) {
+    const newTimers = reId(saveTimers.map(o => TimerData.restore(o, resume)))
     setTimers(newTimers)
     resetNextId(newTimers)
     saveData("timers", newTimers)
@@ -60,7 +60,7 @@ export default function Home() {
 
   useEffect(() => {
 
-    importTimersObj(loadData("timers", [] as TimerData[]))
+    importTimersObj(loadData("timers", [] as TimerData[]), true)
 
     // This disables an miss-detected warning:
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -74,7 +74,7 @@ export default function Home() {
 
   function copyTimer(id: number) {
     const copyFrom = timers.find(t => t.id == id) as TimerData
-    setTimers([...timers, copyFrom.clone(nextId, name => timers.find(t => t.name == name) != null)])
+    setTimers([...timers, copyFrom.clone(nextId, name => timers.find(t => t.name == name) != null).stop()])
     setNextId(n => n + 1)
   }
 

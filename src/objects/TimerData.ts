@@ -269,7 +269,14 @@ export default class TimerData {
     protected _finishedflag: boolean = false
     minimised: boolean = false
 
-    static restore(o: TimerData): TimerData {
+    /**
+     * Create a TimerData object from TimerData data.
+     * 
+     * @param o Settings in TimerData format.
+     * @param [resume=false] Resume the timer.
+     * @returns a full TimerData object
+     */
+    static restore(o: TimerData, resume: boolean = false): TimerData {
         const t = new TimerData(o.id)
         t.name = o.name
         t.configured = o.configured
@@ -278,11 +285,13 @@ export default class TimerData {
         t.finishedcolor = htmlcolour.restore(o.finishedcolor)
         t.minimised = o.minimised ?? false
 
-        // These will restore the active state of the timer:
-        t._starttime = o._starttime
-        t._pausetime = o._pausetime
-        t._currentstage = o._currentstage
-        t._finishedflag = o._finishedflag
+        if (resume) {
+            // These will restore the active state of the timer:
+            t._starttime = o._starttime
+            t._pausetime = o._pausetime
+            t._currentstage = o._currentstage
+            t._finishedflag = o._finishedflag
+        }
         return t
     }
 
@@ -444,6 +453,7 @@ export default class TimerData {
         this._finishedflag = false
         this._currentstage = 0
         this.resetAlarms()
+        return this // Used when copying
     }
     pause() {
         if (this.started && !this.paused) {
