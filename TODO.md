@@ -2,6 +2,8 @@
 
 This I want to achieve in this project:
 
+[ ] Allow updating progress of a running timer. For if I start a timer late.
+
 ## Bonus items
 
 ## DONE
