@@ -2,7 +2,9 @@
 
 This I want to achieve in this project:
 
-[ ] Allow updating progress of a running timer. For if I start a timer late.
+* [ ] Allow updating progress of a running timer. For if I start a timer late.
+* [ ] Change drag and drop to behave better when I have many timers.
+  * [ ] Perhaps seperate minimise and normal modes.
 
 ## Bonus items
 
