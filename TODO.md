@@ -5,7 +5,6 @@ This I want to achieve in this project:
 * [ ] Allow updating progress of a running timer. For if I start a timer late.
 * [ ] Change drag and drop to behave better when I have many timers.
   * [ ] Perhaps seperate minimise and normal modes.
-* [ ] Loading screen (loading state, default true, set to false after initial timer load)
 
 ## Bonus items
 
@@ -52,6 +51,7 @@ This I want to achieve in this project:
       Remembered wrong - was actually just that copying a "1" always produced "2" even if "2" exists.
 * [X] Adjust minimum timer size larger to reduce reshuffling of timer positions.
 * [X] On import and clone, stop timers. But not on initial load (refresh page or brower crash should resume timers).
+* [X] Loading screen (loading state, default true, set to false after initial timer load)
 
 ---
 END OF FILE

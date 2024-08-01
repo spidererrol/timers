@@ -12,7 +12,7 @@ export default function Home() {
   const [nextId, setNextId] = useState(1)
   const [timers, setTimers] = useState([] as TimerData[]) // Immer didn't work for deeper updates.
   const [tick, setTick] = useState(() => new Date())
-  const pagename = new StateDefault(useState(PageName.MainView), PageName.MainView)
+  const pagename = new StateDefault(useState(PageName.Loading), PageName.MainView)
 
   useEffect(() => {
     const ticker = setInterval(() => {
@@ -62,6 +62,7 @@ export default function Home() {
 
     importTimersObj(loadData("timers", [] as TimerData[]), true)
 
+    pagename.setDefault()
     // This disables an miss-detected warning:
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])

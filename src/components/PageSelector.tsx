@@ -6,8 +6,10 @@ import TimerData from "@/objects/TimerData"
 import SaveTimers from "@/components/SaveTimers"
 import LoadTimers from "./LoadTimers"
 import { importExportData, importTimersFunc } from "@/objects/DataTypes"
+import Loading from "./Loading"
 
 export enum PageName {
+    Loading,
     MainView,
     AllExporter,
     AllImporter,
@@ -28,6 +30,8 @@ interface PageProps {
 
 export default function PageSelector({ pagename, timers, importTimers, moveTimer, addTimer, copyTimer, delTimer, updateTimer }: PageProps) {
     switch (pagename.state) {
+        case PageName.Loading:
+            return <Loading />
         case PageName.MainView:
             return <MainView timers={timers} moveTimer={moveTimer} addTimer={addTimer} copyTimer={copyTimer} delTimer={delTimer} updateTimer={updateTimer} pageShow={pagename} />
         case PageName.AllExporter:
