@@ -5,6 +5,9 @@ This I want to achieve in this project:
 * [ ] Allow updating progress of a running timer. For if I start a timer late.
 * [ ] Change drag and drop to behave better when I have many timers.
   * [ ] Perhaps seperate minimise and normal modes.
+  * [ ] Make spacing between timers a permenant drop zone just without highlighting
+* [ ] Make timer borders flash when alarming.
+  * [ ] Change default border to blue and alarm flashes between yellow and red.
 
 ## Bonus items
 
