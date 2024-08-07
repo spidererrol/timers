@@ -14,7 +14,7 @@ Then('There should be {int} timer(s)', async function (this: World, int: number)
     expect(count).toBe(int)
 })
 
-Given('I add a timer', async function (this: World) {
+Given('I add a(nother) timer', async function (this: World) {
     await this.ctx.page.locator("button.addTimer").click()
 })
 
