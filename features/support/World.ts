@@ -5,7 +5,8 @@ let browser: Browser
 
 export async function closeBrowser() {
     // console.log("Closing browser")
-    await browser.close()
+    if (browser)
+        await browser.close()
 }
 
 export interface XWorld extends IWorld {
