@@ -1,14 +1,13 @@
 'use client'
 
-import React, { createContext, useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import TimerData from "@/objects/TimerData"
 import { StateDefault } from "@/libs/State"
 import { arrayMoveImmutable } from "array-move"
 import PageSelector, { PageName } from "@/components/PageSelector"
 import { loadData, saveData } from "@/libs/dataStorage"
 import { importExportData, TimersSavesCollection } from "@/objects/DataTypes"
-
-export const TickContext = createContext<Date>(new Date())
+import { TickContext } from "@/libs/TickContext"
 
 export default function Home() {
   const [nextId, setNextId] = useState(1)

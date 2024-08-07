@@ -3,7 +3,7 @@ import { useDraggable } from "@dnd-kit/core"
 import { ReactNode, useContext } from "react"
 import { CSS } from '@dnd-kit/utilities'
 import { condClasses } from "@/libs/helpers"
-import { TickContext } from "@/app/page"
+import { TickContext } from "@/libs/TickContext"
 
 function alarmA(tick: Date): boolean {
     return (Math.floor(tick.getMilliseconds() / 500) % 2) == 0
