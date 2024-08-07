@@ -474,7 +474,9 @@ export default class TimerData {
         this.resetAlarms()
     }
 
-    constructor(id: number) {
+    constructor(id: number, name?: string) {
         this.id = id
+        if (name)
+            this.name = name
     }
 }

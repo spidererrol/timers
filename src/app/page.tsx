@@ -69,7 +69,14 @@ export default function Home() {
 
 
   function addTimer() {
-    setTimers([...timers, new TimerData(nextId)])
+    let newname = "Timer"
+    let n = 1
+    while (timers.find(t => t.name == newname) !== undefined) {
+      newname = newname.replace(/\s*\d+$/, "")
+      n++
+      newname = newname + " " + n
+    }
+    setTimers([...timers, new TimerData(nextId, newname)])
     setNextId(n => n + 1)
   }
 
