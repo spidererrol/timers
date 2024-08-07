@@ -1,13 +1,11 @@
 import { State } from "@/libs/State"
 import TimerData from "@/objects/TimerData"
 import FingerButton from "@/components/FingerButton"
-import { ImportIcon, ExportIcon, AddIcon, LoadIcon, SaveIcon, RestoreIcon } from "@/components/Icons"
+import { ImportIcon, ExportIcon, AddIcon, LoadIcon, SaveIcon } from "@/components/Icons"
 import Timers from "@/components/Timers"
 import { PageName } from "@/components/PageSelector"
 import { useSensor, PointerSensor, useSensors, DragStartEvent, DragEndEvent, DragCancelEvent, DndContext } from "@dnd-kit/core"
 import { useState } from "react"
-import Timer from "./Timer"
-import TimerMin from "./Timer/Min"
 
 interface MainViewProps {
     timers: TimerData[]
@@ -57,7 +55,7 @@ export function MainView({ timers, addTimer, copyTimer, delTimer, moveTimer, upd
             </div>
             <div className="timers">
                 <Timers timers={timers} mode="Normal" copyTimer={copyTimer} delTimer={delTimer} updateTimer={updateTimer} dragging={dragging} />
-                <div className="buttonsPanel items-center">
+                <div className="items-center buttonsPanel">
                     <div className="mainButtons">
                         <FingerButton onClick={() => pageShow.state = PageName.LoadTimers}><LoadIcon /></FingerButton>
                         <FingerButton onClick={() => pageShow.state = PageName.SaveTimers}><SaveIcon /></FingerButton>
