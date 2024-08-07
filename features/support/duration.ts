@@ -57,51 +57,63 @@ class base implements duration {
         return this._ms / this.convert
     }
     get ms(): duration {
-        return new ms({ ms: this._ms })
+        return new duration_ms({ ms: this._ms })
     }
     get milliseconds(): duration {
-        return new ms({ ms: this._ms })
+        return new duration_ms({ ms: this._ms })
     }
     get s(): duration {
-        return new s({ ms: this._ms })
+        return new duration_s({ ms: this._ms })
     }
     get seconds(): duration {
-        return new s({ ms: this._ms })
+        return new duration_s({ ms: this._ms })
     }
     get m(): duration {
-        return new m({ ms: this._ms })
+        return new duration_m({ ms: this._ms })
     }
     get minutes(): duration {
-        return new m({ ms: this._ms })
+        return new duration_m({ ms: this._ms })
     }
     get h(): duration {
-        return new h({ ms: this._ms })
+        return new duration_h({ ms: this._ms })
     }
     get hours(): duration {
-        return new h({ ms: this._ms })
+        return new duration_h({ ms: this._ms })
     }
 }
 
-export class ms extends base {
+class duration_ms extends base {
     protected get convert(): number {
         return convert.ms
     }
 }
+export function ms(ms: number) {
+    return new duration_ms(ms)
+}
 
-export class s extends base {
+class duration_s extends base {
     protected get convert(): number {
         return convert.s
     }
 }
+export function s(s: number) {
+    return new duration_s(s)
+}
 
-export class m extends base {
+class duration_m extends base {
     protected get convert(): number {
         return convert.m
     }
 }
+export function m(m: number) {
+    return new duration_m(m)
+}
 
-export class h extends base {
+class duration_h extends base {
     protected get convert(): number {
         return convert.h
     }
+}
+export function h(h: number) {
+    return new duration_h(h)
 }

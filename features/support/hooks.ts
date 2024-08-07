@@ -7,7 +7,7 @@ import { s } from './duration.ts'
 //     this.ctx = new MyWorld(options)
 // })
 
-setDefaultTimeout(new s(30).ms.Number) // Default timeout is 5s which can be too short.
+setDefaultTimeout(s(30).ms.Number) // Default timeout is 5s which can be too short.
 
 Before({ tags: "not @internal" }, async function (this: XWorld) {
     this.ctx = new MyWorld(this)
