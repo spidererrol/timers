@@ -1,18 +1,25 @@
-import { After, AfterAll, Before, IWorldOptions, setWorldConstructor } from '@cucumber/cucumber'
+import { After, AfterAll, AfterStep, Before, IWorldOptions, setWorldConstructor } from '@cucumber/cucumber'
 import { closeBrowser, MyWorld, MyWorldOptions, XWorld } from './World.ts'
 
-setWorldConstructor(function (this: XWorld, options: IWorldOptions<MyWorldOptions>) {
-    this.ctx = new MyWorld(options)
-})
+// setWorldConstructor(function (this: XWorld, options: IWorldOptions<MyWorldOptions>) {
+//     // Object.assign(this,options) // Doesn't work.
+//     this.ctx = new MyWorld(options)
+// })
 
 Before(async function (this: XWorld) {
+    this.ctx = new MyWorld(this)
     await this.ctx.initContext(this.parameters)
 })
 
-After(function (this: XWorld) {
-    this.ctx.close()
+After(async function (this: XWorld) {
+    await this.ctx.close()
 })
 
-AfterAll(function () {
-    closeBrowser()
+AfterStep(async function (this: XWorld) {
+    await this.ctx.attachScreenshot()
+})
+
+AfterAll(async function () {
+    // this.parameters.log("Close broweser") // <- Untested
+    await closeBrowser()
 })
