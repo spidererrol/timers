@@ -6,8 +6,6 @@ This I want to achieve in this project:
 * [ ] Change drag and drop to behave better when I have many timers.
   * [ ] Perhaps seperate minimise and normal modes.
   * [ ] Make spacing between timers a permenant drop zone just without highlighting
-* [ ] Make timer borders flash when alarming.
-  * [ ] Change default border to blue and alarm flashes between yellow and red.
 
 ## Bonus items
 
@@ -55,6 +53,8 @@ This I want to achieve in this project:
 * [X] Adjust minimum timer size larger to reduce reshuffling of timer positions.
 * [X] On import and clone, stop timers. But not on initial load (refresh page or brower crash should resume timers).
 * [X] Loading screen (loading state, default true, set to false after initial timer load)
+* [X] Make timer borders flash when alarming.
+  * [X] Change default border to blue and alarm flashes between yellow and red.
 
 ---
 END OF FILE

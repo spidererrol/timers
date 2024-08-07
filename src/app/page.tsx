@@ -1,12 +1,14 @@
 'use client'
 
-import React, { useEffect, useState } from "react"
+import React, { createContext, useEffect, useState } from "react"
 import TimerData from "@/objects/TimerData"
 import { StateDefault } from "@/libs/State"
 import { arrayMoveImmutable } from "array-move"
 import PageSelector, { PageName } from "@/components/PageSelector"
 import { loadData, saveData } from "@/libs/dataStorage"
 import { importExportData, TimersSavesCollection } from "@/objects/DataTypes"
+
+export const TickContext = createContext<Date>(new Date())
 
 export default function Home() {
   const [nextId, setNextId] = useState(1)
@@ -143,7 +145,9 @@ export default function Home() {
 
   return (
     <main className="flex flex-col justify-between items-center">
+      <TickContext.Provider value={tick}>
       <PageSelector pagename={pagename} timers={timers} moveTimer={moveTimer} addTimer={addTimer} copyTimer={copyTimer} delTimer={delTimer} updateTimer={updateTimer} importTimers={importTimers} />
+      </TickContext.Provider>
       <div className="rtc" suppressHydrationWarning={true}>{tick.toLocaleTimeString("en-GB")}</div>
     </main>
   )
