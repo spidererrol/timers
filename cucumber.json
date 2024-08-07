@@ -1,0 +1,41 @@
+{
+  "default": {
+    "paths": [
+      "features/*.feature"
+    ],
+    "loader": [
+      "ts-node/esm"
+    ],
+    "import": [
+      "features/**/*.ts"
+    ],
+    "format": [
+      "progress-bar",
+      [
+        "rerun",
+        "@rerun.txt"
+      ],
+      [
+        "usage",
+        "reports/usage.txt"
+      ],
+      [
+        "message",
+        "reports/messages.ndjson"
+      ],
+      [
+        "junit",
+        "reports/junit.xml"
+      ],
+      [
+        "html",
+        "reports/html-formatter.html"
+      ]
+    ],
+    "formatOptions": {
+      "snippetInterface": "async-await"
+    },
+    "retry": 2,
+    "retryTagFilter": "@flaky"
+  }
+}

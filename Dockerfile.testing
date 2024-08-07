@@ -1,0 +1,10 @@
+FROM mcr.microsoft.com/devcontainers/typescript-node:1-22-bookworm
+RUN mkdir /void-timers/
+RUN chown -Rc node: /void-timers/
+WORKDIR /void-timers/
+USER node
+COPY package*.json /void-timers/
+RUN npm ci
+RUN npx playwright install --with-deps
+VOLUME /void-timers/
+CMD ["/bin/bash"]
