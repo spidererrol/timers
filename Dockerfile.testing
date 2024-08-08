@@ -1,4 +1,6 @@
 FROM mcr.microsoft.com/devcontainers/typescript-node:1-22-bookworm
+RUN apt-get update
+RUN apt-get install -y x11-apps
 RUN mkdir /void-timers/
 RUN chown -Rc node: /void-timers/
 WORKDIR /void-timers/
@@ -7,4 +9,5 @@ COPY package*.json /void-timers/
 RUN npm ci
 RUN npx playwright install --with-deps
 VOLUME /void-timers/
+VOLUME /tmp/.X11-unix/X0
 CMD ["/bin/bash"]
