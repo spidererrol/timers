@@ -1,36 +1,72 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Timers App
 
-## Getting Started
+This application is published to [Timers](https://spidererrol.github.io/timers/).
 
-First, run the development server:
+Currently there is only a dark mode colour scheme.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Main Page
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Initially there will only be the main controls and a real-time clock:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+![Main Controls](docs/images/MainControls.png).
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+These consist of:
 
-## Learn More
+* ![Load](docs/images/LoadButton.png) Load a saved set of timers (from current browser storage)
+* ![Save](docs/images/SaveButton.png) Save the current timers (to current browser storage)
+* ![Import](docs/images/ImportButton.png) Upload timers & settings from an external JSON file.
+* ![Export](docs/images/ExportButton.png) Download timers & settings as a JSON file.
+* ![Add Timer](docs/images/AddButton.png) Add a new timer.
 
-To learn more about Next.js, take a look at the following resources:
+Once you add a timer, it will appear in the last position in edit mode.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Timers
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Edit
 
-## Deploy on Vercel
+![Edit Timer](docs/images/EditTimer.png)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+This is composed of the following elements:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+* ![Clone](docs/images/CloneButton.png) Clone this timer and it's current state to a new timer.
+* ![Delete](docs/images/DeleteButton.png) Delete this timer. An autosave will be created just before this timer is deleted.
+* ![Accept](docs/images/AcceptButton.png) Accept all changes and switch this timer to "Run" mode. There are 2 of these buttons, they both do the same thing.
+* ![Edit Name](docs/images/EditName.png) Change the name of the timer here. There are no restrictions imposed here, even duplicate names are permitted.
+* ![Colours](docs/images/TimerColours.png) Display the default background colour and the background colour from finished timers along with corrisponding Edit buttons.
+* ![Edit Colour](docs/images/EditButton.png) Edit the corrisponding colour.
+* ![Stage](docs/images/EditStageHMS.png) This is where you can edit a timer stage in Hours:Minutes:Seconds format.
+  * ![Stage Number](docs/images/StageNumber1.png) At the top left there is a tiny stage number.
+  * ![Inc10](docs/images/Inc10.png)![Inc1](docs/images/Inc1.png) Increment the corrisponding number by 10 or 1. If gray, it would move above maximum.
+  * ![Dec10](docs/images/Dec10.png)![Dec1](docs/images/Dec1.png) Decrement the corrisponding number by 10 or 1. If gray, it would move below the minimum.
+  * ![Edit Colours](docs/images/ColourButton.png) This button will switch to editing the colour transitions for this stage.
+  * ![Edit Seconds](docs/images/EditInSecsButton.png) This shows the current stage length in seconds, pressing it will switch to editing in seconds:
+    * ![Edit in seconds](docs/images/EditStageSecs.png)
+    * ![Edit HMS](docs/images/EditInHMS.png) Return to Hours:Minutes:Seconds editing. Also show current (Hours:)Mins:Secs form.
+  * ![Remove Stage](docs/images/RemoveStageButton.png) This button will remove this stage. If gray it is disabled. You must have at least one stage.
+* ![Add Stage](docs/images/AddStageButton.png) This button will add another stage to this timer.
+
+### Edit default/finished colours
+
+![Edit Colour Panel](docs/images/EditColour.png)
+
+The sliders' backgrounds will alter to reflect the current values of each other.
+Clicking the colour swatch next to the slider will switch that slider to direct numeric editing.
+
+Click the ![Edit Button](docs/images/EditButton.png) to close the edit sliders.
+
+## TODO (docs)
+
+* Stage colour transitions view.
+* Run view.
+  * Play
+  * Pause
+  * Stop
+  * Alarm active.
+* Minimised view.
+* Drag & drop ordering.
+
+## TODO (code)
+
+See [TODO.md](TODO.md)
+
+## END OF FILE
